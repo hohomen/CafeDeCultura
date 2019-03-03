@@ -10,6 +10,7 @@
 	type="text/css" />
 <!-- Custom styles for this template -->
 <link href="/resources/css/color.css" rel="stylesheet">
+<link href="/resources/css/custom.css" rel="stylesheet">
 <link href="/resources/css/business-frontpage.css" rel="stylesheet">
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
@@ -36,19 +37,16 @@
 					<li class="nav-item active"><a class="nav-link" href="#">Home
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<!--  <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>  -->
-					<li class="nav-item"><a class="nav-link" data-toggle="modal" href="#bs-example-modal-sm" id="login">Login</a>
-					</li>
+					<!-- <li class="nav-item"><a class="nav-link" href="#">News</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Setting</a>
+					</li> -->
+					<li class="nav-item"><a class="nav-link" data-toggle="modal"
+						href="#bs-example-modal-sm" id="login">Login</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	
+
 	<!--모달 알림창  -->
 	<div class="modal fade" id="bs-example-modal-sm" tabindex="-1"
 		role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -68,4 +66,4 @@
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>

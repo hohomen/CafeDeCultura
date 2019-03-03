@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script>
-
 	/*수정, 삭제 페이지 이동  */
 	$(document).ready(function() {
 
@@ -21,7 +20,7 @@
 		$(".btn-info").on("click", function() {
 			formObj.attr("action", "/board/remove");
 			formObj.submit();
-		});
+		});		
 
 	});
 </script>
@@ -33,8 +32,8 @@
 
 
 <div class="container col-md-10 card border2 border-success"
-	style="margin-top: 5%;">
-	<div style="margin: 1%; margin-left: 1%; margin-top: 3%">
+	style="margin-top: 2%;">
+	<div style="margin: 1%; margin-left: 1%; margin-top: 2%">
 		<div class="row ">
 			<h5 class="text-dark col-md-9">
 				<strong> ${boardVO.member_id} > </strong> ${boardVO.title }
@@ -46,14 +45,19 @@
 		</div>
 	</div>
 </div>
-<div class="container col-md-10 card border2 border-success"
-	style="margin-top: 3%; margin-bottom: 0px; height: 18rem;">
-	<div style="margin-left: 3%; margin-top: 3%">
-		<div class="row ">
-			<p class="text-dark">${boardVO.content}</p>
-		</div>
-	</div>
+
+
+<div class="container col-md-10 border2 border-success"
+	style="margin-top: 2%; margin-bottom: 0px;">
+
+	<textarea id='txtarea' 
+		style="width: 100%; height: 24em; border: 0;  background: clear;"
+		placeholder="내용을 입력하세요" id="content" name="content"
+		readonly="readonly">${boardVO.content}
+	</textarea>
 </div>
+
+
 <div class="container col-md-10 "
 	style="margin-bottom: 4%; margin-top: 10px;">
 	<div class="box-footer">

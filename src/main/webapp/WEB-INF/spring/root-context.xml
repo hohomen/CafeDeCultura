@@ -13,8 +13,8 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/cultura"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value="choi1201"></property>
+		<property name="username" value=""></property>
+		<property name="password" value=""></property>
 		<property name="connectionProperties">
     		<props>
         		<prop key="useUnicode">yes</prop>

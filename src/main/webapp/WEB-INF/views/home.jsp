@@ -14,17 +14,9 @@
 		</div>
 	</div>
 </header>
-<style>
-.header2 {
-	height: 60px;
-	text-align: center;
-	margin: 10px 0;
-	border-radius: 15px;
-	font-family: 'Nanum Gothic', sans-serif;
-}
-</style>
+
 <!-- Header with phrase and search bar -->
-<div class='row ' style="padding-bottom:3%; padding-top:1%;">
+<div class='row ' style="padding-bottom: 3%; padding-top: 1%;">
 	<div class="col-md-7 header2"
 		style="text-align: center; padding: 10px;">
 		<h2 style="color: c0392b;">
@@ -33,14 +25,29 @@
 	</div>
 	<div class="col-md-5 header2"
 		style="text-align: center; padding: 10px;">
-		<a href='/board/register'><button class="btn btn-info"><h5>글쓰기</h5></button></a>		
+		<a href='/board/register'><button class="btn btn-info">
+				<h5>글쓰기</h5>
+			</button></a>
 		<!-- <div class="form-group">
             <input type="text" class="form-control" placeholder="검색"><button type="submit" class="btn btn-default">Submit</button>
         	</div> -->
 	</div>
 </div>
 
+<!-- <div class="container col-md-9">
+	<div class=row style="height: 10px;">
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="서비스 준비중 입니다.">
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-default">찾기</button>
+		</div>
 
+		<div class="form-group col-md-2 col-md-offset-10">
+			<button type="submit" class="btn btn-default">글쓰기</button>
+		</div>
+	</div>
+</div> -->
 
 <!-- Board lists -->
 <div class="container col-md-10 ">
