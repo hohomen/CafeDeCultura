@@ -41,6 +41,15 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		return session.selectList(namespace+".listAll");
 	}
+
+    @Override
+    public List<BoardVO> listPage(int page) throws Exception {
+        if (page <= 0){
+            page = 1;
+        }
+        page = (page - 1) * 10;
+        return session.selectList(namespace + ".listPage", page);
+    }
 	
 	
 }

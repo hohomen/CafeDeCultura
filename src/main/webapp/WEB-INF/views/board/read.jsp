@@ -50,8 +50,8 @@
 <div class="container col-md-10 border2 border-success"
 	style="margin-top: 2%; margin-bottom: 0px;">
 
-	<textarea id='txtarea' 
-		style="width: 100%; height: 24em; border: 0;  background: clear;"
+	<textarea id='txtarea'
+		style="width: 100%; height: 24em; border: 0; background: clear;"
 		placeholder="내용을 입력하세요" id="content" name="content"
 		readonly="readonly">${boardVO.content}
 	</textarea>

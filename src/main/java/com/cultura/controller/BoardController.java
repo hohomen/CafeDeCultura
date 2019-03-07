@@ -40,8 +40,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value ="/read", method = RequestMethod.GET)
-	public void read(@RequestParam("board_id") int board_id, Model model)
-		throws Exception{
+	public void read(@RequestParam("board_id") int board_id, Model model)throws Exception{
 		logger.info("show read ...........");
 		model.addAttribute(service.read(board_id));
 	}

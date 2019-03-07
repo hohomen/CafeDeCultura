@@ -1,5 +1,7 @@
 package com.cultura.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -51,6 +53,16 @@ public class BoardDAOTest {
   public void testDelete() throws Exception {
 
     dao.delete(1);
+  }
+  
+  @Test
+  public void testListPage()throws Exception{
+      int page =3;
+      List<BoardVO> list = dao.listPage(page);
+      
+      for(BoardVO boardVO : list){
+          logger.info(boardVO.getBoard_id() + ":" + boardVO.getTitle());
+      }
   }
 
 

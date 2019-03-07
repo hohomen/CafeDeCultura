@@ -3,41 +3,64 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-<mapper namespace ="com.cultura.mapper.BoardMapper">
 
-<insert id = "create">
-insert into board_tb (title, content, member_id)
-value(#{title}, #{content}, #{member_id})
-</insert>
+<mapper namespace="com.cultura.mapper.BoardMapper">
 
-<select id = "read" resultType="BoardVO">
-select
-	board_id, title, content, reg_date, view_cnt, member_id
-from 
-	board_tb
-where 
-	board_id = #{board_id}
-</select>
+	<insert id="create">
+	INSERT INTO BOARD_TB (
+	            TITLE
+	          , CONTENT
+	          , MEMBER_ID)
+	   	  VALUE (#{title}
+	   	      , #{content}
+	   	      , #{member_id})
+	</insert>
 
-<update id="update">
-update board_tb set title = #{title}, content = #{content}
-where board_id = #{board_id}
-</update>
+	<select id="read" resultType="BoardVO">
+		SELECT
+		  board_id, title, content, reg_date, view_cnt, member_id
+		FROM
+		  board_tb
+		WHERE
+		  board_id = #{board_id}
+	</select>
 
-<delete id ="delete">
-delete from board_tb where board_id = #{board_id}
-</delete>
+	<update id="update">
+		UPDATE board_tb 
+		   SET title = #{title}, content = #{content}
+		 WHERE board_id = #{board_id}
+	</update>
 
-<select id= "listAll" resultType="BoardVO">
-<![CDATA[
-select 
-	board_id, title, content, reg_date, view_cnt, member_id
-from 
-	board_tb
-where board_id > 0
-order by board_id desc, reg_date desc
-]]>
-</select>
+	<delete id="delete">
+   	DELETE FROM BOARD_TB 
+          WHERE BOARD_ID = #{board_id}
+	</delete>
+
+	<select id="listAll" resultType="BoardVO">
+    <![CDATA[
+        SELECT BOARD_ID
+             , TITLE
+             , CONTENT
+             , REG_DATE
+             , VIEW_CNT
+             , MEMBER_ID
+		  FROM BOARD_TB
+		 WHERE board_id > 0
+   	  ORDER BY BOARD_ID DESC, REG_DATE DESC
+		]]>
+	</select>
+	
+	<select id="listPage" resultType="BoardVO">
+		SELECT BOARD_ID
+		     , TITLE
+		     , CONTENT
+		     , MEMBER_ID
+		     , REG_DATE
+		     , VIEW_CNT
+		  FROM BOARD_TB
+		 WHERE BOARD_ID &gt; 0
+	  ORDER BY BOARD_ID DESC
+		 LIMIT #{page}, 10	
+	</select>
 
 </mapper>
