@@ -62,5 +62,19 @@
 	  ORDER BY BOARD_ID DESC
 		 LIMIT #{page}, 10	
 	</select>
+	
+	<select id="listCriteria" resultType="BoardVO">
+	SELECT BOARD_ID
+	     , TITLE
+	     , CONTENT
+	     , MEMBER_ID
+	     , REG_DATE
+	     , VIEW_CNT
+	  FROM BOARD_TB
+	 WHERE BOARD_ID &gt; 0
+  ORDER BY BOARD_ID DESC
+     LIMIT #{pageStart}, #{perPageNum}
+	
+	</select>
 
 </mapper>

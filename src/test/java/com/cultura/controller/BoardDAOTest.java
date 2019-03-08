@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cultura.domain.BoardVO;
+import com.cultura.domain.Criteria;
 import com.cultura.persistence.BoardDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -23,7 +25,7 @@ public class BoardDAOTest {
 
   private static Logger logger = LoggerFactory.getLogger(BoardDAOTest.class);
 
-  @Test
+  @Test @Ignore
   public void testCreate() throws Exception {
 
     BoardVO board = new BoardVO();
@@ -33,13 +35,13 @@ public class BoardDAOTest {
     dao.create(board);
   }
 
-  @Test
+  @Test @Ignore
   public void testRead() throws Exception {
 
     logger.info(dao.read(2).toString());
   }
 
-  @Test
+  @Test @Ignore
   public void testUpdate() throws Exception {
 
     BoardVO board = new BoardVO();
@@ -49,13 +51,13 @@ public class BoardDAOTest {
     dao.update(board);
   }
 
-  @Test
+  @Test @Ignore
   public void testDelete() throws Exception {
 
     dao.delete(1);
   }
   
-  @Test
+  @Test @Ignore
   public void testListPage()throws Exception{
       int page =3;
       List<BoardVO> list = dao.listPage(page);
@@ -63,6 +65,19 @@ public class BoardDAOTest {
       for(BoardVO boardVO : list){
           logger.info(boardVO.getBoard_id() + ":" + boardVO.getTitle());
       }
+  }
+  
+  @Test 
+  public void testListCriteria()throws Exception{
+      Criteria cri = new Criteria();
+      cri.setPage(2);
+      cri.setPerPageNum(20);
+      
+      List<BoardVO> list = dao.listCriteria(cri);
+      
+      for(BoardVO boardVO : list){
+          logger.info(boardVO.getBoard_id()+":"+boardVO.getTitle());
+      }      
   }
 
 
