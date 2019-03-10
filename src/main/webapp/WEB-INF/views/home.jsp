@@ -34,20 +34,21 @@
 	</div>
 </div>
 
-<!-- <div class="container col-md-9">
+<div class="container col-md-9">
 	<div class=row style="height: 10px;">
 		<div class="form-group">
 			<input type="text" class="form-control" placeholder="서비스 준비중 입니다.">
 		</div>
-		<div class="form-group">
+		<div class="form-group col-md-6">
 			<button type="submit" class="btn btn-default">찾기</button>
 		</div>
 
-		<div class="form-group col-md-2 col-md-offset-10">
+		<div class="form-group col-md-2" style="float: right ">
 			<button type="submit" class="btn btn-default">글쓰기</button>
 		</div>
 	</div>
-</div> -->
+</div>
+<br><br>
 
 <!-- Board lists -->
 <div class="container col-md-10 ">

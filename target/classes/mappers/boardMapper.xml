@@ -76,5 +76,11 @@
      LIMIT #{pageStart}, #{perPageNum}
 	
 	</select>
+	
+	<select id="countPaging" resultType="int">
+    SELECT COUNT(BOARD_ID)         
+      FROM BOARD_TB
+     WHERE BOARD_ID &gt; 0    
+    </select>
 
 </mapper>
