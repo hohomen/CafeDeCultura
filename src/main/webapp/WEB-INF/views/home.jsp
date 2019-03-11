@@ -54,7 +54,7 @@
 <div class="container col-md-10 ">
 	<c:forEach items="${list}" var="boardVO">
 		<a href='/board/read?board_id=${boardVO.board_id}'>
-			<div class="card border border-success">
+			<div class="card border1 border-success">
 				<div class="text-dark card-body">
 					<h5>
 						&nbsp;${boardVO.title} <span class="text-danger">[${boardVO.view_cnt}]</span>
@@ -65,6 +65,21 @@
 			</div>
 		</a>
 	</c:forEach>
+	
+	<ul class="pagination">
+    <li><a href="#">«</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">6</a></li>
+    <li><a href="#">7</a></li>
+    <li><a href="#">8</a></li>
+    <li><a href="#">9</a></li>
+    <li><a href="#">10</a></li>
+    <li><a href="#">»</a></li>
+   </ul>
 </div>
 
 <%@ include file="./template/footer.jsp"%>

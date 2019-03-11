@@ -10,7 +10,7 @@
 		write_form.title.value = "";
 		write_form.content.value = "";
 	}
-	</script>
+</script>
 <div class="jumbotron">
 	<h2>
 		<strong>&nbsp;글 수정</strong>

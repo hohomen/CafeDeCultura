@@ -28,6 +28,8 @@
 
 <form role="form" method="post">
 	<input type='hidden' name='board_id' value="${boardVO.board_id}">
+	<input type='hidden' name='page' value="${cri.page}">
+	<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
 </form>
 
 
@@ -61,8 +63,9 @@
 <div class="container col-md-10 "
 	style="margin-bottom: 4%; margin-top: 10px;">
 	<div class="box-footer">
-		<button type="submit" class="btn btn-success">수정</button>
-		<button type="submit" class="btn btn-info">삭제</button>
+	    <button type="submit" class="btn btn-success pull-right">목록으로</button>
+	    <button type="submit" class="btn btn-success">수정</button>
+	    <button type="submit" class="btn btn-info">삭제</button>		  			
 	</div>
 </div>
 

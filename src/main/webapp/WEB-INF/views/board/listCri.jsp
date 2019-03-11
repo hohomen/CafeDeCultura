@@ -16,7 +16,7 @@
 </header>
 
 <!-- Header with phrase and search bar -->
-<div class='row ' style="padding-bottom: 3%; padding-top: 1%;">
+<div class='row' >
 	<div class="col-md-7 header2"
 		style="text-align: center; padding: 10px;">
 		<h2 style="color: c0392b;">
@@ -27,33 +27,45 @@
 		style="text-align: center; padding: 10px;">
 		<a href='/board/register'><button class="btn btn-info">
 				<h5>글쓰기</h5>
-			</button></a>
-		<!-- <div class="form-group">
-            <input type="text" class="form-control" placeholder="검색"><button type="submit" class="btn btn-default">Submit</button>
-            </div> -->
+			</button></a>		
 	</div>
 </div>
 
-<!-- <div class="container col-md-9">
-    <div class=row style="height: 10px;">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="서비스 준비중 입니다.">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-default">찾기</button>
-        </div>
+<div class="container col-md-10">
+	<div class=row style="height: 10px; padding:3%;">
+		<div class="col-md-8">
+		<form class="form-inline">
+			<div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button"
+                        id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">선택</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a> 
+                        <a class="dropdown-item" href="#">Another action</a> 
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+			
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="서비스 준비중 입니다.">
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-default">찾기</button>
+			</div>
+		</div>
+		</form>
 
-        <div class="form-group col-md-2 col-md-offset-10">
-            <button type="submit" class="btn btn-default">글쓰기</button>
-        </div>
-    </div>
-</div> -->
+		<div class="form-group col-md-4" >
+			<button type="submit" class="btn btn-default pull-right">글쓰기</button>
+		</div>
+	</div>
+
 
 <!-- Board lists -->
-<div class="container col-md-10 ">
+
 	<c:forEach items="${list}" var="boardVO">
 		<a href='/board/read?board_id=${boardVO.board_id}'>
-			<div class="card border border-success">
+			<div class="card border1 border-success">
 				<div class="text-dark card-body">
 					<h5>
 						&nbsp;${boardVO.title} <span class="text-danger">[${boardVO.view_cnt}]</span>
@@ -64,7 +76,7 @@
 			</div>
 		</a>
 	</c:forEach>
-</div>
+
 
 <!-- 페이징 -->
 
@@ -73,27 +85,29 @@
 		<ul class="pagination">
 
 			<c:if test="${pageMaker.prev}">
-				<li>
-				    <a href="listCri${pageMaker.makeQuery(pageMaker.startPage - 1) }">&laquo;</a>
-				</li> 
+				<li class="page-item"><a
+					href="listCri${pageMaker.makeQuery(pageMaker.startPage - 1) }"
+					class="page-link">&laquo;</a></li>
 			</c:if>
 
 			<c:forEach begin="${pageMaker.startPage }"
 				end="${pageMaker.endPage }" var="idx">
-				<li <c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-					<a href="listCri${pageMaker.makeQuery(idx)}">${idx}</a>
+				<li class="page-item"
+					<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
+					<a href="listCri${pageMaker.makeQuery(idx)}" class="page-link">${idx}</a>
 				</li>
 			</c:forEach>
 
 			<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<li>
-				    <a href="listCri${pageMaker.makeQuery(pageMaker.endPage +1) }">&raquo;</a>
-				</li>
+				<li class="page-item"><a
+					href="listCri${pageMaker.makeQuery(pageMaker.endPage +1) }"
+					class="page-link">&raquo;</a></li>
 			</c:if>
 
 		</ul>
 	</div>
 </div>
 
+</div>
 
 <%@ include file="../template/footer.jsp"%>

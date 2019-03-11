@@ -47,12 +47,19 @@ public class BoardController {
 		logger.info("show read ...........");
 		model.addAttribute(service.read(board_id));
 	}
+	@RequestMapping(value ="/readPage", method = RequestMethod.GET)
+    public void readPage(@RequestParam("board_id") int board_id, Model model)throws Exception{
+        logger.info("show read ...........");
+        model.addAttribute(service.read(board_id));
+    }
 	
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
-	  public String remove(@RequestParam("board_id") int board_id, RedirectAttributes rttr) throws Exception {
+	  public String remove(@RequestParam("board_id") int board_id, Criteria cri, RedirectAttributes rttr) throws Exception {
 
 	    service.delete(board_id);
-
+	    
+	    rttr.addAttribute("page", cri.getPage());
+	    rttr.addAttribute("perPageNum", cri.getPerPageNum());
 	    rttr.addFlashAttribute("msg", "SUCCESS");
 
 	    return "redirect:/home";
@@ -75,7 +82,7 @@ public class BoardController {
 	    return "redirect:/home";
 	  }
 	
-/*	@RequestMapping(value = "/listCri", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/listCri", method = RequestMethod.GET)
 	  public void listAll(Criteria cri, Model model) throws Exception {
 
 	    logger.info("show list Page with Criteria......................");

@@ -5722,7 +5722,7 @@ border-radius
 	padding-left: 0;
 	list-style: none;
 	border-radius: 0.25rem;
-}
+} 
 
 .page-link {
 	position: relative;
@@ -7313,10 +7313,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus
 	background-color: transparent !important;
 }
 
-/* .border {
-  border: solid #dee2e6;
-  border-width: 4px 4px 0px 4px
-} */
+.border {
+    border: 1px solid #dee2e6 !important;
+}
+
 .border-top {
 	border-top: 1px solid #dee2e6 !important;
 }
