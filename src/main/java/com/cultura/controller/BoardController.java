@@ -48,7 +48,7 @@ public class BoardController {
 		model.addAttribute(service.read(board_id));
 	}
 	@RequestMapping(value ="/readPage", method = RequestMethod.GET)
-    public void readPage(@RequestParam("board_id") int board_id, Model model)throws Exception{
+    public void readPage(@RequestParam("board_id") int board_id, @ModelAttribute("cri") Criteria cri, Model model)throws Exception{
         logger.info("show read ...........");
         model.addAttribute(service.read(board_id));
     }
@@ -62,7 +62,7 @@ public class BoardController {
 	    rttr.addAttribute("perPageNum", cri.getPerPageNum());
 	    rttr.addFlashAttribute("msg", "SUCCESS");
 
-	    return "redirect:/home";
+	    return "redirect:/board/listCri";
 	  }
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)

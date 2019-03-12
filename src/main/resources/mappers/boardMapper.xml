@@ -83,4 +83,53 @@
      WHERE BOARD_ID &gt; 0    
     </select>
 
+<!--     <select id="listSearch" resultType="BoardVO">
+    SELECT * FROM BOARD_TB     
+     WHERE BOARD_ID &gt; 0
+     ORDER BY BOARD_ID DESC
+     LIMIT #{pageStart}, #{perPageNum}   
+    </select>
+    
+    <select id="listSearchCount" resultType="int">
+    SELECT COUNT(BOARD_ID)
+      FROM BOARD_TB      
+     WHERE BOARD_ID &gt; 0        
+    </select> -->
+    
+    <sql id="search">
+	 <if test="searchType != null" > 
+	   <if test="searchType == 't'.toString()">
+	     and title like CONCAT('%', #{keyword}, '%')
+	   </if>
+	   <if test="searchType == 'c'.toString()">
+	     and content like CONCAT('%', #{keyword}, '%')
+	   </if>
+	   <if test="searchType == 'w'.toString()">
+	     and writer like CONCAT('%', #{keyword}, '%')
+	   </if>     
+	   <if test="searchType == 'tc'.toString()">
+	     and ( title like CONCAT('%', #{keyword}, '%') OR content like CONCAT('%', #{keyword}, '%'))
+	   </if>	                 
+	 </if>  
+	</sql>
+ 
+	<select id="listSearch" resultType="BoardVO">
+	  SELECT * 
+	  FROM BOARD_TB 
+	  WHERE BOARD_ID &gt; 0	
+	  <include refid="search"></include>  
+
+	  ORDER BY BOARD_ID DESC
+	  LIMIT #{pageStart}, #{perPageNum}
+	
+	</select>
+	  
+	<select id="listSearchCount" resultType="int">	  
+	  SELECT COUNT(BOARD_ID) 
+	  FROM BOARD_TB 
+	  WHERE BOARD_ID &gt; 0 	
+	  <include refid="search"></include>
+	 
+	</select>  
+    
 </mapper>

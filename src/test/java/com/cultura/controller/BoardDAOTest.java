@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cultura.domain.BoardVO;
 import com.cultura.domain.Criteria;
+import com.cultura.domain.SearchCriteria;
 import com.cultura.persistence.BoardDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -67,7 +68,7 @@ public class BoardDAOTest {
       }
   }
   
-  @Test 
+  @Test @Ignore
   public void testListCriteria()throws Exception{
       Criteria cri = new Criteria();
       cri.setPage(2);
@@ -78,6 +79,27 @@ public class BoardDAOTest {
       for(BoardVO boardVO : list){
           logger.info(boardVO.getBoard_id()+":"+boardVO.getTitle());
       }      
+  }
+  
+  @Test
+  public void testDynamic1() throws Exception{
+      
+      SearchCriteria cri = new SearchCriteria();
+      cri.setPage(1);
+      cri.setKeyword("글");
+      cri.setSearchType("t");
+      
+      logger.info("===============================");
+      
+      List<BoardVO> list = dao.listSearch(cri);
+      
+      for(BoardVO boardVO : list){
+          logger.info(boardVO.getBoard_id()+": "+ boardVO.getTitle());          
+      }
+      
+      logger.info("===============================");
+
+      logger.info("Count: " + dao.listSearchCount(cri));
   }
 
 

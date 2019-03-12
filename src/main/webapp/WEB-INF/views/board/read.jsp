@@ -20,7 +20,12 @@
 		$(".btn-info").on("click", function() {
 			formObj.attr("action", "/board/remove");
 			formObj.submit();
-		});		
+		});
+		$("#listPage").on("click", function() {
+			formObj.attr("method", "get");
+            formObj.attr("action", "/board/listCri");
+            formObj.submit();
+        });
 
 	});
 </script>
@@ -63,7 +68,7 @@
 <div class="container col-md-10 "
 	style="margin-bottom: 4%; margin-top: 10px;">
 	<div class="box-footer">
-	    <button type="submit" class="btn btn-success pull-right">목록으로</button>
+	    <button type="submit" id ="listPage"class="btn btn-success pull-right">목록으로</button>
 	    <button type="submit" class="btn btn-success">수정</button>
 	    <button type="submit" class="btn btn-info">삭제</button>		  			
 	</div>

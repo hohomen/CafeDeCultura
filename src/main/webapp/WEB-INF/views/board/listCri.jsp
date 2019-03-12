@@ -64,7 +64,7 @@
 <!-- Board lists -->
 
 	<c:forEach items="${list}" var="boardVO">
-		<a href='/board/read?board_id=${boardVO.board_id}'>
+		<a href='/board/readPage${pageMaker.makeQuery(pageMaker.cri.page) }&board_id=${boardVO.board_id}'>
 			<div class="card border1 border-success">
 				<div class="text-dark card-body">
 					<h5>
