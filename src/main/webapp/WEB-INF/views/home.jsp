@@ -52,19 +52,20 @@
 
 <!-- Board lists -->
 <div class="container col-md-10 ">
-	<c:forEach items="${list}" var="boardVO">
-		<a href='/board/read?board_id=${boardVO.board_id}'>
-			<div class="card border1 border-success">
-				<div class="text-dark card-body">
-					<h5>
-						&nbsp;${boardVO.title} <span class="text-danger">[${boardVO.view_cnt}]</span>
-					</h5>
-					&nbsp; ${boardVO.member_id}&nbsp; <small class="text-muted"><fmt:formatDate
-							pattern="yyyy-MM-dd HH:mm" value="${boardVO.reg_date}" /> </small>
-				</div>
-			</div>
-		</a>
-	</c:forEach>	
+    <table border=1 class='table1'>
+        <c:forEach items="${list}" var="boardVO">
+            <tr style="height: 6em;">
+                
+                <td style="width: 87%; padding-left: 2em;"><h5>
+                <a href='/board/read?board_id=${boardVO.board_id}'> &nbsp;${boardVO.title}
+                    </h5> &nbsp; ${boardVO.member_id}&nbsp; <small class="text-muted"><fmt:formatDate
+                            pattern="yy.MM.dd HH:mm" value="${boardVO.reg_date}" /> </small></td>
+                </a>
+                <td style="width: 13%; text-align: center;"><h3>${boardVO.view_cnt}</h3>댓글</td>
+            </tr>
+
+        </c:forEach>
+    </table>
 </div>
 
 <%@ include file="./template/footer.jsp"%>

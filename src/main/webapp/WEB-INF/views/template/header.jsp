@@ -6,11 +6,10 @@
 <meta
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
 	name='viewport'>
-<link href="/resources/css/bootstrap.css" rel="stylesheet"
-	type="text/css" />
+<link href="/resources/css/bootstrap.css" rel="stylesheet" type="text/css" />
 <!-- Custom styles for this template -->
-<link href="/resources/css/custom.css" rel="stylesheet">
-<link href="/resources/css/business-frontpage.css" rel="stylesheet">
+<link href="/resources/css/custom.css" rel="stylesheet" type="text/css" />
+<link href="/resources/css/business-frontpage.css" rel="stylesheet" type="text/css"/>
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css" />
