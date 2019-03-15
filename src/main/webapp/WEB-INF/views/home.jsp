@@ -24,8 +24,8 @@
 		</h2>
 	</div>
 	<div class="col-md-5 header2"
-		style="text-align: center; padding: 10px;">
-		<a href='/board/register'><button class="btn btn-info">
+       style="text-align: center; padding: 10px;">
+        <a href='/board/register'><button class="btn btn-info">
 				<h5>글쓰기</h5>
 			</button></a>
 		<!-- <div class="form-group">

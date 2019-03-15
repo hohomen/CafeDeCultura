@@ -1,12 +1,13 @@
-package org.zerock.service;
+package com.cultura.service;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
-import org.zerock.domain.ReplyVO;
-import org.zerock.persistence.ReplyDAO;
+
+import com.cultura.domain.ReplyVO;
+import com.cultura.persistence.ReplyDAO;
 
 @Service
 public class ReplyServiceImpl implements ReplyService{

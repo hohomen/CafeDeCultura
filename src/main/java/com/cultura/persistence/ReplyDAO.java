@@ -1,8 +1,8 @@
-package org.zerock.persistence;
+package com.cultura.persistence;
 
 import java.util.List;
 
-import org.zerock.domain.ReplyVO;
+import com.cultura.domain.ReplyVO;
 
 public interface ReplyDAO {
     public List<ReplyVO> list(Integer board_id) throws Exception;

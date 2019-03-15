@@ -1,35 +1,40 @@
-package org.zerock.persistence;
+package com.cultura.persistence;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-import org.zerock.domain.ReplyVO;
+
+import com.cultura.domain.ReplyVO;
 
 @Repository
 public class ReplyDAOImpl implements ReplyDAO{
-
+    
+    @Inject
+    private SqlSession session;
+    
+    private static String namespace = "com.cultura.mapper.ReplyMapper";
+    
     @Override
     public List<ReplyVO> list(Integer board_id) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        return session.selectList(namespace + ".list", board_id);
     }
 
     @Override
     public void create(ReplyVO vo) throws Exception {
-        // TODO Auto-generated method stub
-        
+        session.insert(namespace + ".create", vo);        
     }
 
     @Override
     public void update(ReplyVO vo) throws Exception {
-        // TODO Auto-generated method stub
-        
+        session.update(namespace + ".update", vo);        
     }
 
     @Override
     public void delete(Integer reply_id) throws Exception {
-        // TODO Auto-generated method stub
-        
+    session.update(namespace + ".delete", reply_id);        
     }
     
     

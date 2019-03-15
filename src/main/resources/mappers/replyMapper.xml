@@ -4,10 +4,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-    <mapper namespace="org.zerock.mapper.ReplyMapper">
+    <mapper namespace="com.cultura.mapper.ReplyMapper">
     
-    <select id="list" resultType = "ReplyVO">
-    SELCT * 
+    <select id="list" resultType = "com.cultura.domain.ReplyVO">
+    SELECT * 
     FROM REPLY_TB 
     WHERE BOARD_ID = #{board_id}
     ORDER BY REPLY_ID DESC    
@@ -31,4 +31,4 @@
     </delete>
     
     
-    
+  </mapper>
