@@ -1,16 +1,16 @@
-package org.zerock.web;
+package com.cultura.controller;
 
 import javax.inject.Inject;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.zerock.domain.ReplyVO;
-import org.zerock.persistence.ReplyDAO;
+
+import com.cultura.domain.ReplyVO;
+import com.cultura.persistence.ReplyDAO;
 
 
 

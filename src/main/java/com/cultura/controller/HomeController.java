@@ -46,4 +46,10 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+    public void ajaxTest() throws Exception{
+        
+	    
+    }
+	
 }
