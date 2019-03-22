@@ -9,9 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cultura.domain.PageMaker;
+import com.cultura.domain.SearchCriteria;
 import com.cultura.service.BoardService;
 
 /**
@@ -30,10 +33,17 @@ public class HomeController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) throws Exception {
+	public String home(Locale locale, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		logger.info("Welcome home! The client locale is {}.", locale);
-				
-		model.addAttribute("list", service.listAll());
+
+        model.addAttribute("list", service.listSearchCriteria(cri));
+        
+        PageMaker pageMaker = new PageMaker();
+        pageMaker.setCri(cri);
+        
+        pageMaker.setTotalCount(service.listSearchCount(cri));
+        
+        model.addAttribute("pageMaker", pageMaker);
 		
 		return "home";
 	}
@@ -51,5 +61,15 @@ public class HomeController {
         
 	    
     }
-	
+    @RequestMapping(value = "/test2", method = RequestMethod.GET)
+    public void ajaxTest2() throws Exception{
+        
+        
+    }
+    @RequestMapping(value = "/test3", method = RequestMethod.GET)
+    public void ajaxTest3() throws Exception{
+        
+        
+    }
+
 }

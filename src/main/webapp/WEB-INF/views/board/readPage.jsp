@@ -88,4 +88,19 @@
     </div>
 </div>
 
+<div class="container col-md-10 card text-dark "
+    style="padding: 1%; line-height: 160%;">
+    <div class=row>
+        이름
+    </div>
+    <div class=row>        
+        <div class="col-md-12">
+            <textarea rows="3" placeholder="댓글 서비스는 준비중입니다." class="form-control"></textarea>
+        </div>        
+    </div>
+    <div class=row>
+        등록일
+    </div>
+    
+</div>
 <%@ include file="../template/footer.jsp"%>

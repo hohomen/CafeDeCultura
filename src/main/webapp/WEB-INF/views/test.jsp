@@ -44,7 +44,7 @@
     <div id='modDiv' style="display: none;">
         <div class='modal-title'></div>
         <div>
-            <input type='text' id='replytext'>
+            <input type='textarea' id='replytext'>
         </div>
         <div>
             <button type="button" id="replyModBtn">Modify</button>
@@ -68,12 +68,14 @@
 <ul id="replies">
     
 </ul>
-<script>
+
+<script>  
+
     $("#replies").on("click", ".replyLi button", function() {
 
         var reply = $(this).parent();
 
-        var reply_id = reply.attr("data-reply_id");
+        var reply_id = reply.attr("id");
         var replytext = reply.text();
 
         $(".modal-title").html(reply_id);
@@ -83,15 +85,16 @@
     });
 
     var board_id = 3067;
-    var str="";
+    
+    
     function getAllList(){
-    	$.getJSON("/replies/all/"+ board_id, function(data){
-            
-            console.log(data.length);
-                
+    	
+    	
+    	$.getJSON("/replies/all/"+ board_id, function(data){            
+    		var str="";        
             $(data).each(
                     function(){
-                        str +="<li data-reply_id='"+this.reply_id+"' class ='replyLi'>"
+                        str +="<li id="+this.reply_id+" reply_id='"+this.reply_id+"' class ='replyLi'>"
                         + this.reply_id + ":" + this.replytext
                         + "<button>MOD</button></li>";                  
                     });
@@ -123,6 +126,7 @@
                 if (result == 'SUCCESS') {
 
                     alert("등록 되었습니다.");
+                    
                     getAllList();
 
                 }
@@ -132,12 +136,12 @@
     
     $("#replyDelBtn").on("click", function() {
 
-        var rno = $(".modal-title").html();
+        var reply_id = $(".modal-title").html();
         var replytext = $("#replytext").val();
 
         $.ajax({
             type : 'delete',
-            url : '/replies/' + rno,
+            url : '/replies/' + reply_id,
             headers : {
                 "Content-Type" : "application/json",
                 "X-HTTP-Method-Override" : "DELETE"
@@ -148,7 +152,9 @@
                 if (result == 'SUCCESS') {
                     alert("삭제 되었습니다.");
                     $("#modDiv").hide("slow");
-                    getAllList();
+                    //$("#replies.replyLi button").remove();
+                    $("#"+reply_id).remove();
+                    
                 }
             }
         });
@@ -156,12 +162,12 @@
     
     $("#replyModBtn").on("click",function(){
         
-        var rno = $(".modal-title").html();
+        var reply_id = $(".modal-title").html();
         var replytext = $("#replytext").val();
         
         $.ajax({
               type:'put',
-              url:'/replies/'+rno,
+              url:'/replies/'+reply_id,
               headers: { 
                     "Content-Type": "application/json",
                     "X-HTTP-Method-Override": "PUT" },
@@ -172,11 +178,16 @@
                   if(result == 'SUCCESS'){
                       alert("수정 되었습니다.");
                        $("#modDiv").hide("slow");
-                      //getAllList();
-                       getPageList(replyPage);
+                       //$("#replies").emply();
+                      getAllList();
+                      //getPageList(replyPage);
                   }
           }});
-      });     
+      });
+    $(document).ready(function(){
+    	getAllList(); 
+    	$.ajaxSetup({ cache: false });
+    });    
 </script>
 
 

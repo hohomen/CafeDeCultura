@@ -5,26 +5,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
 
-<script>
-    //검색
-    $(document).ready(function() {
-
-        $("#searchBtn").on("click", function(event) {
-                    self.location = "list"// Sets the location of the current window itself.
-                    + '${pageMaker.makeQuery(1)}'
-                    + "&searchType="
-                    + $("select option:selected").val()
-                    + "&keyword=" + $('#keywordInput').val();
-        });
-
-        /* $(".btn-info").on("click", function() {
-            formObj.attr("action", "/board/remove");
-            formObj.submit();
-        }); */   
-
-    });
-</script>
-
 
 <!-- Header with Background Image -->
 <header class="business-header">
@@ -40,7 +20,7 @@
 	<div class="col-md-7 header2"
 		style="text-align: center; padding: 10px;">
 		<h2 style="color: c0392b;">
-			<strong>문화인을 위한 공간</strong>
+			<strong class=mainfont>문화인을 위한 공간</strong>
 		</h2>
 	</div>
 	<div class="col-md-5 header2"
@@ -51,7 +31,7 @@
 	</div>
 </div>
 
-<div class="container col-md-10">
+<div class="container col-md-10 vertical-center" >
 	<div class=row style="height: 10px; padding: 3%;">
 		<div class="col-md-8">
 			<form class="form-inline">
@@ -92,7 +72,8 @@
             <tr style="height: 6em;">
                 
                 <td style="width: 87%; padding-left: 2em;"><h5>
-                <a href='/board/readPage${pageMaker.makeSearch(pageMaker.cri.page) }&board_id=${boardVO.board_id}'> &nbsp;${boardVO.title}
+                <!--uriComponant는 문제 없었다. 여기서 재대로된 처리가 안 되는거임.  -->                
+                <a href='/sboard/readPage${pageMaker.makeSearch(pageMaker.cri.page) }&board_id=${boardVO.board_id}'> &nbsp;${boardVO.title}
                     </h5> &nbsp; ${boardVO.member_id}&nbsp; <small class="text-muted"><fmt:formatDate
                             pattern="yyyy-MM-dd HH:mm" value="${boardVO.reg_date}" /> </small></td>
                 </a>
@@ -106,13 +87,13 @@
 
 	<!-- 페이징 -->
 
-	<div class="box-footer">
-		<div class="text-center">
+	<div class="row">
+		<div class="mx-auto justify-content-center ">
 			<ul class="pagination">
 
 				<c:if test="${pageMaker.prev}">
 					<li class="page-item"><a
-						href="listCri${pageMaker.makeSearch(pageMaker.startPage - 1) }"
+						href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }"
 						class="page-link">&laquo;</a></li>
 				</c:if>
 
@@ -120,13 +101,13 @@
 					end="${pageMaker.endPage }" var="idx">
 					<li class="page-item"
 						<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-						<a href="listCri${pageMaker.makeSearch(idx)}" class="page-link">${idx}</a>
+						<a href="list${pageMaker.makeSearch(idx)}" class="page-link">${idx}</a>
 					</li>
 				</c:forEach>
 
 				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 					<li class="page-item"><a
-						href="listCri${pageMaker.makeSearch(pageMaker.endPage +1) }"
+						href="list${pageMaker.makeSearch(pageMaker.endPage +1) }"
 						class="page-link">&raquo;</a></li>
 				</c:if>
 
@@ -135,5 +116,28 @@
 	</div>
 
 </div>
+
+<script>
+    //검색
+    $(document).ready(function() {
+    	    	
+    	/* var keywordd = $('#keywordInput').val();    	
+    	$('#keywordInput').attr('value', encodeURIComponent(keywordd)); */
+
+        $("#searchBtn").on("click", function(event) {
+                    self.location = "list"// Sets the location of the current window itself.
+                    + '${pageMaker.makeQuery(1)}'
+                    + "&searchType="
+                    + $("select option:selected").val()
+                    + "&keyword=" + encodeURIComponent($('#keywordInput').val());                     
+        });
+
+        /* $(".btn-info").on("click", function() {
+            formObj.attr("action", "/board/remove");
+            formObj.submit();
+        }); */   
+
+    });
+</script>
 
 <%@ include file="../template/footer.jsp"%>
