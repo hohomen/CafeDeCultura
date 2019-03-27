@@ -36,6 +36,11 @@ public class ReplyDAOImpl implements ReplyDAO{
     public void delete(Integer reply_id) throws Exception {
     session.update(namespace + ".delete", reply_id);        
     }
+
+    @Override
+    public int getBoard_id(Integer reply_id) throws Exception {
+        return session.selectOne(namespace + ".getBoardId", reply_id);
+    }
     
     
 }

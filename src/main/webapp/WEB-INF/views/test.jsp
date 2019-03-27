@@ -69,8 +69,31 @@
     
 </ul>
 
-<script>  
-
+<pre id="regularEx"style="word-wrap: break-word;white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-break:break-all;">
+<students xmlns="http://www.koreaxml.ac.kr/2015/students">
+    <student>
+        &ltsid> 100 </sid>
+        &ltname> 홍 현 </name>
+        <age> 30 </age>
+        <profile>
+            <html xmlns="http://www.w3.org/1999/xhtml">
+                <head>
+                    <title> 나의 소개 </title>
+                </head>
+                <body> 활발한 사회활동 중 </body>
+            </html>
+        </profile>
+    </student>
+</students>
+</pre>
+<script>
+    function changeText(){       
+    var rText = $("#regularEx").html();
+    var aText = rText.replace(/</g, '&lt;');
+    $("#regularEx").html(aText);
+    alert(rText);
+    }
+    
     $("#replies").on("click", ".replyLi button", function() {
 
         var reply = $(this).parent();
@@ -136,7 +159,7 @@
     
     $("#replyDelBtn").on("click", function() {
 
-        var reply_id = $(".modal-title").html();
+        var reply_id = $(".modal-title").html(); // text를 하든 html을 하든 어쨌든.
         var replytext = $("#replytext").val();
 
         $.ajax({
@@ -162,7 +185,7 @@
     
     $("#replyModBtn").on("click",function(){
         
-        var reply_id = $(".modal-title").html();
+        var reply_id = $(".modal-title").html(); // text를 하든 html을 하든 어쨌든.
         var replytext = $("#replytext").val();
         
         $.ajax({
@@ -187,6 +210,7 @@
     $(document).ready(function(){
     	getAllList(); 
     	$.ajaxSetup({ cache: false });
+    	changeText()
     });    
 </script>
 

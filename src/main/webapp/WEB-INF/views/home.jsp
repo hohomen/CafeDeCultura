@@ -27,7 +27,7 @@
 
 <div class="container col-md-10 vertical-center" >
     <div class=row>
-            <div class="form-group col-md-4">
+        <div class="form-group col-md-4">
             <a href='/board/register'>
                 <button type="submit" class="btn btn-success">글쓰기</button>
             </a>
@@ -64,38 +64,39 @@
 <div class="container col-md-10 vertical-center" >
     <table border=1 class='table1'>    
         <c:forEach items="${list}" var="boardVO">        
-            <tr  style="height: 6em;">
-                
-                <td style="width: 87%; padding-left: 2em;"><h5>
-                <a href='/sboard/readPage?board_id=${boardVO.board_id}'> &nbsp;${boardVO.title}
-                    </h5> &nbsp; ${boardVO.member_id}&nbsp; <small class="text-muted"><fmt:formatDate
-                            pattern="yy.MM.dd HH:mm" value="${boardVO.reg_date}" /> </small></td>
-                </a>
-                <td style="width: 13%; text-align: center;"><h3>${boardVO.view_cnt}</h3>댓글</td>
+            <tr  style="height: 6em;">                
+                <td style="width: 87%; padding-left: 2em;">
+                    <h5><a href='/sboard/readPage?board_id=${boardVO.board_id}'> &nbsp;${boardVO.title} </a></h5>
+                     ${boardVO.member_id}&nbsp; <small class="text-muted"><fmt:formatDate pattern="yy.MM.dd HH:mm" value="${boardVO.reg_date}" /> &nbsp;조회수&nbsp;${boardVO.view_cnt} </small>
+                </td>             
+                <td style="width: 13%; text-align: center;">
+                    <h3>${boardVO.reply_cnt}</h3>
+                                        댓글
+                </td>
             </tr>        
         </c:forEach>
     </table>
     
-        <div class="row" style="margin-top:2%;">
+        <div class="row" style="margin:3%;">
         <div class="mx-auto justify-content-center ">
             <ul class="pagination">
 
                 <c:if test="${pageMaker.prev}">
-                    <li class="page-item"><a
+                    <li class="page-item ml-2"><a
                         href="${pageMaker.makeSearch(pageMaker.startPage - 1) }"
                         class="page-link">&laquo;</a></li>
                 </c:if>
 
                 <c:forEach begin="${pageMaker.startPage }"
                     end="${pageMaker.endPage }" var="idx">
-                    <li class="page-item"
+                    <li class="page-item ml-2"
                         <c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
                         <a href="${pageMaker.makeSearch(idx)}" class="page-link">${idx}</a>
                     </li>
                 </c:forEach>
 
                 <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-                    <li class="page-item"><a
+                    <li class="page-item ml-2"><a
                         href="${pageMaker.makeSearch(pageMaker.endPage +1) }"
                         class="page-link">&raquo;</a></li>
                 </c:if>

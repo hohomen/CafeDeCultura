@@ -9,9 +9,16 @@ public class BoardVO {
 	private Date reg_date;
 	private int view_cnt;
 	private String member_id;
+	private int reply_cnt;
 	
 	
-	public Integer getBoard_id() {
+	public int getReply_cnt() {
+        return reply_cnt;
+    }
+    public void setReply_cnt(int reply_cnt) {
+        this.reply_cnt = reply_cnt;
+    }
+    public Integer getBoard_id() {
 		return board_id;
 	}
 	public void setBoard_id(Integer board_id) {

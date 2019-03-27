@@ -1,3 +1,9 @@
+.replyTextarea{
+	margin-top: 0px; 
+	margin-bottom: 0px; 
+	height: 5rem;   
+}
+
 .mainfont{
     font-family: 'Jeju Hallasan', serif;
     	

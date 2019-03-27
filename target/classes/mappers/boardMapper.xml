@@ -70,6 +70,7 @@
 	     , MEMBER_ID
 	     , REG_DATE
 	     , VIEW_CNT
+	     , REPLY_CNT
 	  FROM BOARD_TB
 	 WHERE BOARD_ID &gt; 0
   ORDER BY BOARD_ID DESC
@@ -130,6 +131,17 @@
 	  WHERE BOARD_ID &gt; 0 	
 	  <include refid="search"></include>
 	 
-	</select>  
+	</select>
+	<update id="updateReplyCnt">
+	   UPDATE BOARD_TB 
+	   SET REPLY_CNT = REPLY_CNT + #{amount} 
+	   WHERE BOARD_ID = #{board_id}
+	</update>
+	
+	<update id="updateViewCnt">
+       UPDATE BOARD_TB 
+       SET VIEW_CNT = VIEW_CNT + 1 
+       WHERE BOARD_ID = #{board_id}
+    </update>  
     
 </mapper>
