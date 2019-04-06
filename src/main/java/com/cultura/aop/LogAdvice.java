@@ -1,5 +1,7 @@
 package com.cultura.aop;
 
+import java.util.Arrays;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -15,10 +17,8 @@ public class LogAdvice {
     private static final Logger logger = LoggerFactory.getLogger(LogAdvice.class);
         
     @After("execution(* com.cultura.controller.*.*(..))")
-    public void startLog(JoinPoint jp) {
-        logger.info("......................");
-        logger.info("......................");
-        logger.info(jp.getSignature().getName()+ "..! called");
-        /*logger.info(Arrays.toString(jp.getArgs()));*/
+    public void startLog(JoinPoint jp) {        
+        logger.info(jp.getTarget() + jp.getSignature().getName());
+        logger.info(Arrays.toString(jp.getArgs()));
     }
 }
