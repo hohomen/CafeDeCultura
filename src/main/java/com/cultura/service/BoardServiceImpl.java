@@ -11,8 +11,7 @@ import com.cultura.domain.SearchCriteria;
 import com.cultura.persistence.BoardDAO;
 
 @Service
-public class BoardServiceImpl implements BoardService {
-	
+public class BoardServiceImpl implements BoardService {	
 	@Autowired
 	private BoardDAO dao;
 	

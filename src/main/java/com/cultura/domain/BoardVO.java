@@ -18,13 +18,14 @@ public class BoardVO {
     public void setReply_cnt(int reply_cnt) {
         this.reply_cnt = reply_cnt;
     }
-    public Integer getBoard_id() {
-		return board_id;
-	}
-	public void setBoard_id(Integer board_id) {
-		this.board_id = board_id;
-	}
-	public String getTitle() {
+   
+	public Integer getBoard_id() {
+        return board_id;
+    }
+    public void setBoard_id(Integer board_id) {
+        this.board_id = board_id;
+    }
+    public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {

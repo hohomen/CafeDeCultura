@@ -5,7 +5,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
 
-
 <!-- Header with Background Image -->
 <header class="business-header">
 	<div class="container">
@@ -44,7 +43,6 @@
                     <option value="tc"
                         <c:out value="${cri.searchType eq 'tc'? 'selected':''}"/>>제목+내용</option>
                 </select>
-
                 <div class="form-group">
                     <input type="text" name="keyword" class="form-control" id='keywordInput' value='${cri.keyword }' placeholder="검색어를 임력해 주세요.">
                 </div>
@@ -53,10 +51,6 @@
                 </div>
              </form>
         </div>
-        
-        
-
-
     </div>
 </div>
 
@@ -66,8 +60,14 @@
         <c:forEach items="${list}" var="boardVO">        
             <tr  style="height: 6em;">                
                 <td style="width: 87%; padding-left: 2em;">
-                    <h5><a href='/sboard/readPage?board_id=${boardVO.board_id}'> &nbsp;${boardVO.title} </a></h5>
-                     ${boardVO.member_id}&nbsp; <small class="text-muted"><fmt:formatDate pattern="yy.MM.dd HH:mm" value="${boardVO.reg_date}" /> &nbsp;조회수&nbsp;${boardVO.view_cnt} </small>
+                    <h5>
+                        <a href='/board/read${pageMaker.makeSearch(pageMaker.cri.page)}&board_id=${boardVO.board_id}'>${boardVO.title} </a>
+                    </h5>
+                    ${boardVO.member_id}&nbsp;
+                    <small class="text-muted"> 
+                        <fmt:formatDate pattern="yy.MM.dd HH:mm" value="${boardVO.reg_date}" /> 
+                        &nbsp;조회수&nbsp;${boardVO.view_cnt} 
+                    </small>
                 </td>             
                 <td style="width: 13%; text-align: center;">
                     <h3>${boardVO.reply_cnt}</h3>
@@ -77,14 +77,13 @@
         </c:forEach>
     </table>
     
-        <div class="row" style="margin:3%;">
+    <div class="row" style="margin:3%;">
         <div class="mx-auto justify-content-center ">
             <ul class="pagination">
-
                 <c:if test="${pageMaker.prev}">
-                    <li class="page-item ml-2"><a
-                        href="${pageMaker.makeSearch(pageMaker.startPage - 1) }"
-                        class="page-link">&laquo;</a></li>
+                    <li class="page-item ml-2">
+                        <a href="${pageMaker.makeSearch(pageMaker.startPage - 1) }"
+                           class="page-link">&laquo;</a></li>
                 </c:if>
 
                 <c:forEach begin="${pageMaker.startPage }"
@@ -94,18 +93,14 @@
                         <a href="${pageMaker.makeSearch(idx)}" class="page-link">${idx}</a>
                     </li>
                 </c:forEach>
-
+                
                 <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
                     <li class="page-item ml-2"><a
                         href="${pageMaker.makeSearch(pageMaker.endPage +1) }"
                         class="page-link">&raquo;</a></li>
                 </c:if>
-
             </ul>
         </div>
-    </div>
-    
+    </div>    
 </div>
-
-
 <%@ include file="./template/footer.jsp"%>

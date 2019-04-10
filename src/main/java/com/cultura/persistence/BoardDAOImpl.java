@@ -16,8 +16,7 @@ import com.cultura.domain.SearchCriteria;
 @Repository
 public class BoardDAOImpl implements BoardDAO {
 	@Inject
-	private SqlSession session;
-	
+	private SqlSession session;	
 	private static String namespace = "com.cultura.mapper.BoardMapper";
 	
 	@Override
