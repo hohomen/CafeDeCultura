@@ -6,18 +6,24 @@
 <meta
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
 	name='viewport'>
-<link href="/resources/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/resources/css/bootstrap.css" rel="stylesheet"
+	type="text/css" />
 <!-- Custom styles for this template -->
 <link href="/resources/css/custom.css" rel="stylesheet" type="text/css" />
-<link href="/resources/css/business-frontpage.css" rel="stylesheet" type="text/css"/>
+<link href="/resources/css/business-frontpage.css" rel="stylesheet"
+	type="text/css" />
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css" />
-	<link href="http://fonts.googleapis.com/earlyaccess/jejuhallasan.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/earlyaccess/jejuhallasan.css"
+	rel="stylesheet">
 <script type="text/javascript" src="/resources/jquery/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-<script type="text/javascript" src="/resources/bootstrap/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script type="text/javascript"
+	src="/resources/bootstrap/js/bootstrap.min.js"></script>
 <title>Cafe De Cultura</title>
 </head>
 
@@ -33,14 +39,12 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">Home
-							<span class="sr-only">(current)</span>
-					</a></li>
-					<!-- <li class="nav-item"><a class="nav-link" href="#">News</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Setting</a>
+					<!-- <li class="nav-item active"><a class="nav-link" href="#">Home
+							<span class="sr-only">(current)</span></a>
 					</li> -->
 					<li class="nav-item"><a class="nav-link" data-toggle="modal"
-						href="#bs-example-modal-sm" id="login">Login</a></li>
+						href="#bs-example-modal-sm" id="login">News</a></li>
+					<li class="nav-item"><a class="nav-link" href="/login/login">Login</a></li>
 				</ul>
 			</div>
 		</div>
@@ -55,10 +59,11 @@
 			</button>
 			<div class="modal-content">
 				<div class="modal-header">
+					<h5 class="modal-title" id="mySmallModalLabel">알람 서비스</h5>
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 					</button>
-					<h4 class="modal-title" id="mySmallModalLabel"></h4>
+
 				</div>
 				<div class="modal-body">
 					<p>죄송합니다. &nbsp;서비스 준비중입니다.</p>
