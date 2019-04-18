@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -44,7 +46,12 @@
 					</li> -->
 					<li class="nav-item"><a class="nav-link" data-toggle="modal"
 						href="#bs-example-modal-sm" id="login">News</a></li>
-					<li class="nav-item"><a class="nav-link" href="/login/login">Login</a></li>
+					<sec:authorize access="!isAuthenticated()">
+					    <li class="nav-item"><a class="nav-link" href="/login/loginForm">Login</a></li>
+					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">
+					    <li class="nav-item"><a class="nav-link" href="/j_spring_security_logout">Logout</a></li>
+					</sec:authorize>
 				</ul>
 			</div>
 		</div>
