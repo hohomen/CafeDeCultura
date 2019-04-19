@@ -27,7 +27,7 @@
             <hr />
         </form>
         <div class="form-group">
-            <a href="LogIn_Join.jsp">
+            <a href="/user/joinForm">
                 <button class="btn btn-info btn-block text-dark">회원가입</button>
             </a>
         </div>

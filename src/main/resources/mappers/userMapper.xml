@@ -22,13 +22,23 @@
       </resultMap>
       
       <select id="read" resultMap="userMap">
-SELECT 
-  mem.userId,  userPw, nickname, enabled, regDate, updateDate, auth
-FROM 
-  user_tb mem LEFT OUTER JOIN user_auth_tb auth on mem.userId = auth.userId 
-WHERE mem.userId = #{userId} 
-  </select>
-
-    
+          SELECT mem.userId,  userPw, nickname, enabled, regDate, updateDate, auth
+          FROM user_tb mem LEFT OUTER JOIN user_auth_tb auth on mem.userId = auth.userId 
+          WHERE mem.userId = #{userId} 
+      </select>
+      
+      <select id="readId" resultType="string">
+          SELECT userId
+          FROM user_tb 
+          WHERE userId = #{userId} 
+      </select>
+      <insert id="createUser">
+          INSERT INTO USER_TB(USERID, USERPW, NICKNAME, EMAIL)
+          VALUES(#{userId}, #{userPw}, #{nickname}, #{email})
+      </insert>
+      <insert id="createAuth">
+          INSERT INTO USER_AUTH_TB(USERID, auth)
+          VALUES(#{userId}, #{auth})
+      </insert> 
     
   </mapper>

@@ -47,7 +47,7 @@
 					<li class="nav-item"><a class="nav-link" data-toggle="modal"
 						href="#bs-example-modal-sm" id="login">News</a></li>
 					<sec:authorize access="!isAuthenticated()">
-					    <li class="nav-item"><a class="nav-link" href="/login/loginForm">Login</a></li>
+					    <li class="nav-item"><a class="nav-link" href="/user/loginForm">Login</a></li>
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
 					    <li class="nav-item"><a class="nav-link" href="/j_spring_security_logout">Logout</a></li>
