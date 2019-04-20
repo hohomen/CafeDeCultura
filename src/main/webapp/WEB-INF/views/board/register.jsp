@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="../template/header.jsp"%>
@@ -27,8 +26,8 @@
 				<strong>
 				    <label for="member_name">작성자</label>
 				</strong>				
-				<input type="text" class="form-control border-success" id="member_name"
-					   name="member_id">
+				<input type="text" id="member_name" name="member_id" value="<sec:authentication property="principal.user.nickname"/>" 
+				       readonly="readonly" class="form-control border-success" >
 			</div>&nbsp; &nbsp;			
 		</div>
 		<div class="form-group text-dark">

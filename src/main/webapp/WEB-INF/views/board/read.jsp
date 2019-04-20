@@ -10,7 +10,7 @@
     <input type='hidden' name='searchType' value="${cri.searchType}">
     <input type='hidden' name='keyword' value="${cri.keyword}">    
 </form>
-
+<sec:authentication property="principal.user.nickname" var="authNickname"/>
 <div class="container col-md-10 card border2 border-success"
     style="margin-top: 2%;">
     <div style="margin: 1%; margin-left: 1%; margin-top: 2%">
@@ -37,8 +37,10 @@
     style="margin-bottom: 4%; margin-top: 10px;">
     <div class="box-footer">
         <button type="submit" id ="listPage" class="btn btn-success pull-right">목록으로</button>
-        <button type="submit" id ="writeModifyBtn" class="btn btn-success">수정</button>
-        <button type="submit" id ="writeAddBtn" class="btn btn-info">삭제</button>                  
+        <c:if test="${authNickname eq boardVO.member_id }">
+            <button type="submit" id ="writeModifyBtn" class="btn btn-success">수정</button>
+            <button type="submit" id ="writeAddBtn" class="btn btn-info">삭제</button> 
+        </c:if>                 
     </div>
 </div>
 
@@ -49,9 +51,9 @@
         <div class="col-md-10">
             <textarea id = "newReplyText" name="replytext" rows="3" placeholder="댓글을 입력해 주세요." class="form-control"></textarea>
         </div>
-        <div class="col-md-2"><!-- style="padding-top: 38px"  -->
-            <input type="text" name="replyer" class="form-control" id='newReplyWriter' placeholder="작성자">
-            <input id="replyAddBtn" class="btn btn-success" Type='Submit' Value='등록'></input>
+        <div class="col-md-2"><!-- style="padding-top: 38px"  -->                        
+                <input type="hidden" name="replyer" id='newReplyWriter' value="${authNickname }">
+                <input id="replyAddBtn" class="btn btn-success" Type='Submit' Value='등록'></input>         
         </div>
     </div>
 </div>

@@ -11,7 +11,6 @@ import com.cultura.domain.UserVO;
 public class CustomUser extends User {
 
     private static final long serialVersionUID = 1L;
-
     private UserVO user;
 
     public CustomUser(String username, String password, 
@@ -24,6 +23,13 @@ public class CustomUser extends User {
         super(vo.getUserId(), vo.getUserPw(), vo.getAuthList().stream()
                 .map(auth -> new SimpleGrantedAuthority(auth.getAuth())).collect(Collectors.toList()));
 
-        this.user = vo;
+        this.setUser(vo);
+    }
+
+    public UserVO getUser() {
+        return user;
+    }
+    public void setUser(UserVO user) {
+        this.user = user;
     }
 }

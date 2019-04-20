@@ -44,12 +44,18 @@
 					<!-- <li class="nav-item active"><a class="nav-link" href="#">Home
 							<span class="sr-only">(current)</span></a>
 					</li> -->
-					<li class="nav-item"><a class="nav-link" data-toggle="modal"
-						href="#bs-example-modal-sm" id="login">News</a></li>
+					
+					
 					<sec:authorize access="!isAuthenticated()">
+					    <li class="nav-item"><a class="nav-link" data-toggle="modal"
+                            href="#bs-example-modal-sm" id="login">News</a></li>
 					    <li class="nav-item"><a class="nav-link" href="/user/loginForm">Login</a></li>
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
+					    <li class="nav-item"><a class="nav-link" href="#">
+					       <sec:authentication property="principal.user.nickname"/></a>
+					    </li>					    
+					    
 					    <li class="nav-item"><a class="nav-link" href="/j_spring_security_logout">Logout</a></li>
 					</sec:authorize>
 				</ul>

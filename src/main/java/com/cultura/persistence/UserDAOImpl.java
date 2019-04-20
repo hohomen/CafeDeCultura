@@ -1,9 +1,11 @@
 package com.cultura.persistence;
 
 import javax.inject.Inject;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.cultura.domain.AuthVO;
 import com.cultura.domain.UserVO;
 
 @Repository
@@ -16,15 +18,20 @@ public class UserDAOImpl implements UserDAO {
     public String readId(String id) throws Exception {
         return session.selectOne(namespace + ".readId", id);
     }
-
+    
     @Override
-    public void createUser(UserVO vo) throws Exception {
-        session.insert(namespace+".createUser", vo);
+    public String readNickname(String nickname) throws Exception {
+        return session.selectOne(namespace + ".readNickname", nickname);
     }
 
     @Override
-    public void createAuth(UserVO vo) throws Exception {
-        // TODO Auto-generated method stub
-        
-    }    
+    public void createUser(UserVO user) throws Exception {
+        session.insert(namespace+".createUser", user);
+    }
+
+    @Override
+    public void createAuth(AuthVO auth) throws Exception {
+        session.insert(namespace+".createAuth", auth);
+    }
+    
 }

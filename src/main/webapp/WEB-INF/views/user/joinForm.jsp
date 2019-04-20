@@ -9,29 +9,31 @@
 		</h2>
 	</div>
 	<FORM Name='join' Method='post' Action='/user/register' style="margin-left: 3%">
+	    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<div class="row">
-			<strong><label for="id" class="text-dark">&nbsp;ID </label></strong> </div>
+			<strong><label for="userId" class="text-dark">&nbsp;ID </label></strong> </div>
 		<div class="row">
 			<div class="form-group col-md-6 form-check-inline">
-				<input id="checkId" type="text" class="form-control" size="10" name="userId">&nbsp; 
-				<input id="checkIdBtn" type="button" class="btn btn-warning " value="중복 검사">
+				<input type="text" id="userId" name="userId" required class="form-control">&nbsp; 
+				<input type="button" id="checkIdBtn" value="중복 검사" class="btn btn-warning">
 			    <input type='hidden' name='idCheck'	value=''>
 			</div>
 		</div>
 		<div class="row">
-			<strong><label for="passwd" class="text-dark">&nbsp;비밀번호</label></strong>
+			<strong><label for="userPw" class="text-dark">&nbsp;비밀번호</label></strong>
 		</div>
 		<div class="row">
 			<div class="form-group col-md-6 form-check-inline">
-				<input type="password" class="form-control " size="10" name="userPw">
+				<input type="password" id="userPw" name="userPw" required class="form-control">
 			</div>
 		</div>
 		<div class="row">
-			<strong><label for="passConfirm" class="text-dark">&nbsp;비밀번호	확인</label></strong>
+			<strong><label for="passwdConfirm" class="text-dark">&nbsp;비밀번호 확인</label></strong>
 		</div>
 		<div class="row">
 			<div class="form-group col-md-6 form-check-inline">
-				<input type="password" class="form-control " size="10" name="passwdConfirm">
+				<input type="password" id="passwdConfirm" name="passwdConfirm" required 
+				       class="form-control">
 			</div>
 		</div>
 		<div class="row">
@@ -39,24 +41,24 @@
 		</div>
 		<div class="row">
 			<div class="form-group col-md-6 form-check-inline">
-				<input id="checkNickname"type="text" class="form-control " size="10" name="nickname">&nbsp;
-				<input id="checkNicknameBtn" type="button" class="btn btn-warning " value="중복 검사">
+				<input type="text" id="nickname" name="nickname" required class="form-control">&nbsp;
+				<input type="button" id="checkNicknameBtn" value="중복 검사" class="btn btn-warning" >
 			</div>
 		</div>
 		<div class="row">
-            <strong><label for="pass" class="text-dark">&nbsp;이메일</label></strong>
+            <strong><label for="email" class="text-dark">&nbsp;이메일</label></strong>
         </div>
         <div class="row">
             <div class="form-group col-md-6 form-check-inline">
-                <input type="text" class="form-control " placeholder="ex) donystack@gmail.com" size="10" name="email">
+                <input type="text" id="email" name="email" required placeholder="ex) donystack@gmail.com" class="form-control">
             </div>
         </div>
 		<div class="row">
-			<strong><label for="pass" class="text-dark">&nbsp;블로그(선택 사항)</label></strong>
+			<strong><label for="blog" class="text-dark">&nbsp;블로그(선택 사항)</label></strong>
 		</div>
 		<div class="row">
             <div class="form-group col-md-6 form-check-inline">
-                <input type="text" class="form-control " placeholder="ex) https://cafeDeCultura.github.io" size="10" name="blog">
+                <input type="text" id="blog" name="blog" placeholder="ex) https://cafeDeCultura.github.io" class="form-control">
             </div>
         </div>
 
@@ -64,8 +66,8 @@
 
 		<div class="row">
 			<div class="form-group col-md-6 form-check-inline">
-				<input type='submit' class="btn btn-info" value='회원가입'> &nbsp;&nbsp; 
-				<input type='button' class="btn btn-danger" OnClick='Reset()' value='다시 쓰기'>
+				<input type='submit' value='회원가입' class="btn btn-info" > &nbsp;&nbsp; 
+				<input type='button' value='다시 쓰기' class="btn btn-danger" OnClick='Reset()'>
 			</div>
 		</div>
 	</FORM>
@@ -74,51 +76,12 @@
 
 <script>
 	function Reset() {
-		join.member_id.value = "";
-		join.passwd.value = "";
-		join.passwdConfirm.value = "";
-		join.nick_name.value = "";
-		join.phone1.value = "";
-		join.phone2.value = "";
-		join.email1.value = "";
-		join.email2.value = "";
-	}
-
-	function Check() {
-		if (join.member_id.value.length < 1) {
-			alert("아이디를 입력하세요.");
-			join.member_id.focus();
-			return false;
-		}
-
-		if (join.member_id.value.length < 4) {
-			alert("아이디는 4글자 이상이어야 합니다.");
-			join.member_id.focus();
-			return false;
-		}
-
-		if (join.passwd.value.length < 1) {
-			alert("비밀번호를 입력하세요.");
-			join.passwd.focus();
-			return false;
-		}
-
-		if (join.passwd.value != join.passwdConfirm.value) {
-			alert("비밀번호가 일치하지 않습니다..");
-			join.passwdConfirm.focus();
-			return false;
-		}
-
-		if (join.nick_name.value.length < 1) {
-			alert("닉네임을 입력하세요.");
-			join.nick_name.focus();
-			return false;
-		}
-		if (join.idCheck.value.length < 1) {
-			alert("아이디 중복을 확인해주세요.");
-			return false;
-		}
-		join.submit();
+		document.getElementById("userId").value = "";
+		document.getElementById("userPw").value = "";
+		document.getElementById("passwdConfirm").value = "";
+		document.getElementById("nickname").value = "";
+		document.getElementById("email").value = "";
+		document.getElementById("blog").value = "";
 	}
 
 	function Check_id() {
@@ -130,30 +93,56 @@
 		browsing_window.focus();
 	}
 	
-	$(document).ready(function(){		
+	$(document).ready(function(){
+		//아이디 중복체크
 		$("#checkIdBtn").on("click", function() {    
-	         if(!$("#checkId").val()){
-	             alert("내용을 입력해 주세요.");
-	             return;
-	         }                
-	         var userId = $("#checkId").val();  
-	     
-	         $.ajax({
-	             type : 'post',
-	             url : '/user/checkId/'+userId,
-	             headers : {
-	                 "Content-Type" : "application/json",
-	                 "X-HTTP-Method-Override" : "POST"
-	             },
-	             dataType : 'text',             
-	             success : function(result) {	            	 
-	                 if (result == userId)     
-	                     alert("이미 등록된 아이디입니다.");                     
-	                 else
-	                     alert("사용가능한 아이디입니다.");                
-	             }
-	         });
-	     });
+            if(!$("#userId").val()){
+                alert("내용을 입력해 주세요.");
+                return;
+            }                
+            var userId = $("#userId").val();  
+        
+            $.ajax({
+                type : 'post',
+                url : '/user/checkId/'+userId,
+                headers : {
+                    "Content-Type" : "application/json",
+                    "X-HTTP-Method-Override" : "POST"
+                },
+                dataType : 'text',             
+                success : function(result) {                    
+                    if (result == userId)     
+                        alert("이미 등록된 아이디입니다.");                     
+                    else
+                        alert("사용가능한 아이디입니다.");                
+                }
+            });
+        });		
+		
+		//닉네임 중복체크
+		$("#checkNicknameBtn").on("click", function() {    
+            if(!$("#nickname").val()){
+                alert("내용을 입력해 주세요.");
+                return;
+            }                
+            var nickname = $("#nickname").val();  
+        
+            $.ajax({
+                type : 'post',
+                url : '/user/checkNickname/'+nickname,
+                headers : {
+                    "Content-Type" : "application/json",
+                    "X-HTTP-Method-Override" : "POST"
+                },
+                dataType : 'text',             
+                success : function(result) {                    
+                    if (result == nickname)
+                        alert(result);                     
+                    else
+                        alert(result);                
+                }
+            });
+        });		
 	});
 	
 </script>

@@ -9,7 +9,7 @@
         <id property="userId" column="userId"/>
         <result property="userId" column="userId"/>
         <result property="userPw" column="userPw"/>
-        <result property="userName" column="userName"/>
+        <result property="nickname" column="nickname"/>
         <result property="regDate" column="regDate"/>
         <result property="updateDate" column="updateDate"/>
         <result property="enabled" column="enabled"/>
@@ -32,10 +32,18 @@
           FROM user_tb 
           WHERE userId = #{userId} 
       </select>
+      
+      <select id="readNickname" resultType="string">
+          SELECT nickname
+          FROM user_tb 
+          WHERE nickname = #{nickname} 
+      </select>
+      
       <insert id="createUser">
           INSERT INTO USER_TB(USERID, USERPW, NICKNAME, EMAIL)
           VALUES(#{userId}, #{userPw}, #{nickname}, #{email})
       </insert>
+      
       <insert id="createAuth">
           INSERT INTO USER_AUTH_TB(USERID, auth)
           VALUES(#{userId}, #{auth})
