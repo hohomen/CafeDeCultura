@@ -27,13 +27,13 @@
           WHERE mem.userId = #{userId} 
       </select>
       
-      <select id="readId" resultType="string">
+      <select id="readId" resultType="UserVO">
           SELECT userId
           FROM user_tb 
           WHERE userId = #{userId} 
       </select>
       
-      <select id="readNickname" resultType="string">
+      <select id="readNickname" resultType="UserVO">
           SELECT nickname
           FROM user_tb 
           WHERE nickname = #{nickname} 

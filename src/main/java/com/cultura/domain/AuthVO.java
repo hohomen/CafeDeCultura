@@ -14,6 +14,10 @@ public class AuthVO {
     }
     public void setAuth(String auth) {
         this.auth = auth;
+    }
+    @Override
+    public String toString() {
+        return "AuthVO [userId=" + userId + ", auth=" + auth + "]";
     }   
     
 }

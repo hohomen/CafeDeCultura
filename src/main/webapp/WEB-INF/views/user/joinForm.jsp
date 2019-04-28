@@ -8,8 +8,7 @@
 			<strong>회원 가입</strong>
 		</h2>
 	</div>
-	<FORM Name='join' Method='post' Action='/user/register' style="margin-left: 3%">
-	    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	<FORM Name='join' Method='post' Action='/user/register' style="margin-left: 3%">	    
 		<div class="row">
 			<strong><label for="userId" class="text-dark">&nbsp;ID </label></strong> </div>
 		<div class="row">
@@ -43,6 +42,7 @@
 			<div class="form-group col-md-6 form-check-inline">
 				<input type="text" id="nickname" name="nickname" required class="form-control">&nbsp;
 				<input type="button" id="checkNicknameBtn" value="중복 검사" class="btn btn-warning" >
+				<input type='hidden' name='nicknameCheck' value=''>
 			</div>
 		</div>
 		<div class="row">
@@ -110,8 +110,9 @@
                     "X-HTTP-Method-Override" : "POST"
                 },
                 dataType : 'text',             
-                success : function(result) {                    
-                    if (result == userId)     
+                success : function(object) {
+                	var result = JSON.parse(object);                	
+                    if (result.userId == userId)
                         alert("이미 등록된 아이디입니다.");                     
                     else
                         alert("사용가능한 아이디입니다.");                
@@ -135,11 +136,12 @@
                     "X-HTTP-Method-Override" : "POST"
                 },
                 dataType : 'text',             
-                success : function(result) {                    
-                    if (result == nickname)
-                        alert(result);                     
+                success : function(object) {
+                	var result = JSON.parse(object);
+                    if (result.nickname == nickname)
+                        alert("이미 사용중인 닉네임입니다.");                     
                     else
-                        alert(result);                
+                        alert("사용 가능한 닉네임입니다.");                
                 }
             });
         });		

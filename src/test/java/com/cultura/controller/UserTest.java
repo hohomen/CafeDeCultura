@@ -25,7 +25,7 @@ public class UserTest {
     @Test @Ignore
     public void testReadUser() {
         try {
-            logger.info(dao.readId("choi"));
+            logger.info(dao.readId("choi").toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -34,7 +34,7 @@ public class UserTest {
     @Test 
     public void testReadNickname() {
         try {
-            logger.info(dao.readNickname("최동호"));
+            logger.info(dao.readNickname("최동호").toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -36,14 +36,13 @@ public class UserController {
 
     @RequestMapping(value = "/joinForm", method = RequestMethod.GET)
     public void join(Model model) throws Exception {
-
     }
 
     @Inject
     private UserDAO dao;    
     @RequestMapping(value = "/checkId/{userId}", method = RequestMethod.POST)
-    public ResponseEntity<String> checkId(@PathVariable("userId") String userId) throws Exception {
-        ResponseEntity<String> entity = null;
+    public ResponseEntity<UserVO> checkId(@PathVariable("userId") String userId) throws Exception {
+        ResponseEntity<UserVO> entity = null;
         try {
             entity = new ResponseEntity<>(dao.readId(userId), HttpStatus.OK);
 
@@ -55,8 +54,8 @@ public class UserController {
     }
     
     @RequestMapping(value = "/checkNickname/{nickname}", method = RequestMethod.POST)
-    public ResponseEntity<String> checkNickname(@PathVariable("nickname") String nickname) throws Exception {
-        ResponseEntity<String> entity = null;
+    public ResponseEntity<UserVO> checkNickname(@PathVariable("nickname") String nickname) throws Exception {
+        ResponseEntity<UserVO> entity = null;
         try {
             entity = new ResponseEntity<>(dao.readNickname(nickname), HttpStatus.OK);
 
@@ -68,7 +67,7 @@ public class UserController {
     }
     
     @Inject    
-    private UserService service;    
+    private UserService service;
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registPOST(UserVO user, AuthVO auth, RedirectAttributes rttr) throws Exception {             
         service.createIdentification(user, auth);        

@@ -15,12 +15,12 @@ public class UserDAOImpl implements UserDAO {
     private static String namespace = "com.cultura.mapper.UserMapper";
     
     @Override
-    public String readId(String id) throws Exception {
+    public UserVO readId(String id) throws Exception {
         return session.selectOne(namespace + ".readId", id);
     }
     
     @Override
-    public String readNickname(String nickname) throws Exception {
+    public UserVO readNickname(String nickname) throws Exception {
         return session.selectOne(namespace + ".readNickname", nickname);
     }
 
