@@ -3,14 +3,6 @@
 	pageEncoding="utf-8"%>
 <%@ include file="../template/header.jsp"%>
 
-<script>
-	/* 다시 작성 */
-	function Reset() {
-		write_form.title.value = "";
-		write_form.d_content.value = "";
-	}
-	</script>
-
 <div class="jumbotron">
 	<h2>
 		<strong>&nbsp;글 작성</strong>
@@ -50,4 +42,12 @@
 		</div>
 	</form>
 </div>
+
+<script>
+    // 다시 작성
+    function Reset() {
+        write_form.title.value = "";
+        write_form.d_content.value = "";
+    }
+</script>
 <%@ include file="../template/footer.jsp"%>

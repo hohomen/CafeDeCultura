@@ -5,27 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta
-	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
-	name='viewport'>
-<link href="/resources/css/bootstrap.css" rel="stylesheet"
-	type="text/css" />
-<!-- Custom styles for this template -->
+<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
+	  name='viewport'>
+<link href="/resources/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/resources/css/business-frontpage.css" rel="stylesheet" type="text/css" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+	  rel="stylesheet" type="text/css" />	  
+<link href="http://fonts.googleapis.com/earlyaccess/jejuhallasan.css" rel="stylesheet">
 <link href="/resources/css/custom.css" rel="stylesheet" type="text/css" />
-<link href="/resources/css/business-frontpage.css" rel="stylesheet"
-	type="text/css" />
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css" />
-<link href="http://fonts.googleapis.com/earlyaccess/jejuhallasan.css"
-	rel="stylesheet">
-<script type="text/javascript" src="/resources/jquery/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-<script type="text/javascript"
-	src="/resources/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script type="text/javascript" src="/resources/bootstrap/js/bootstrap.min.js"></script>
 <title>Cafe De Cultura</title>
 </head>
 
@@ -44,19 +34,24 @@
 					<!-- <li class="nav-item active"><a class="nav-link" href="#">Home
 							<span class="sr-only">(current)</span></a>
 					</li> -->
-					
+					<li class="nav-item"><a class="nav-link" data-toggle="modal"
+                            href="#bs-example-modal-sm" id="login">수다방</a></li>
 					
 					<sec:authorize access="!isAuthenticated()">
-					    <li class="nav-item"><a class="nav-link" data-toggle="modal"
-                            href="#bs-example-modal-sm" id="login">News</a></li>
-					    <li class="nav-item"><a class="nav-link" href="/user/loginForm">Login</a></li>
+					    <li class="nav-item">
+					        <a class="nav-link" data-toggle="modal" href="#bs-example-modal-sm" id="login">알람</a>
+					    </li>
+					    <li class="nav-item">
+					        <a class="nav-link" href="/user/loginForm">로그인</a>
+					    </li>
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
 					    <li class="nav-item"><a class="nav-link" href="#">
 					       <sec:authentication property="principal.user.nickname"/></a>
 					    </li>					    
-					    
-					    <li class="nav-item"><a class="nav-link" href="/j_spring_security_logout">Logout</a></li>
+					    <li class="nav-item">
+					        <a class="nav-link" href="/j_spring_security_logout">Logout</a>
+					    </li>
 					</sec:authorize>
 				</ul>
 			</div>
@@ -69,7 +64,7 @@
 		<div class="modal-dialog modal-sm">
 			<button type="button" class="close" data-dismiss="modal">
 				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-			</button>
+			</button>    
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="mySmallModalLabel">알람 서비스</h5>
