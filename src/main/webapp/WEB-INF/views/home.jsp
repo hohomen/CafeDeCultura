@@ -27,7 +27,7 @@
     <div class=row>
         <div class="form-group col-md-4">
             <a href='/board/register'>
-                <button type="submit" class="btn btn-success">글쓰기</button>
+                <button type="submit" class="btn btn-coffee">글쓰기</button>
             </a>
         </div>
         <div class="col-md-8">

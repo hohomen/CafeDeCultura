@@ -10,7 +10,7 @@
 	</h2>
 </div>
 
-<div class="row container card form-group border-success" style="padding: 1%; margin: 2%">
+<div class="row container card form-group border-coffee" style="padding: 1%; margin: 2%">
     <form name='write_form' role="form" method='post' style="margin-top: 1%; margin: 2%">
         <input type='hidden' name='page' value="${cri.page}">
         <input type='hidden' name='perPageNum' value="${cri.perPageNum}">
@@ -23,7 +23,7 @@
                 <strong>
                     <label for="member_name">작성자</label>
                 </strong>               
-                <input type="text" class="form-control border-success" id="member_name"
+                <input type="text" class="form-control border-coffee" id="member_name"
                        name="member_id" value="${boardVO.member_id}" readonly="readonly">
             </div>&nbsp; &nbsp;         
         </div>
@@ -32,21 +32,21 @@
                 <label for="write_time">제목</label>
             </strong>
             <div class="form-check-inline col-xl-12">
-                <input type='text' id="write_time" class="form-control border-success" 
+                <input type='text' id="write_time" class="form-control border-coffee" 
                        placeholder="제목을 입력하세요" name='title' value='${boardVO.title}'>
             </div>
         </div>
         <div class=" text-dark form-group">
-            <textarea class="form-control border-success" rows="20"
+            <textarea class="form-control border-coffee" rows="20"
                       style="margin-top: 0px; margin-bottom: 0px; height: 20rem;" cols="90" 
                       placeholder="내용을 입력하세요" name="content" id="d_content">${boardVO.content}</textarea>
         </div>
     </form>
         
     <div class="form-group">       
-        <input class="btn btn-success pull-right" type="button" onClick="Reset()" value="다시 쓰기">
-        <button id ="modifyWriteBtn" class="btn btn-success">수정</button>
-        <button id ="modifyCancelBtn" class="btn btn-info">취소</button>                 
+        <input class="btn btn-coffee pull-right" type="button" onClick="Reset()" value="다시 쓰기">
+        <button id ="modifyWriteBtn" class="btn btn-coffee">수정</button>
+        <button id ="modifyCancelBtn" class="btn btn-brown">취소</button>                 
     </div>    
 </div>
 

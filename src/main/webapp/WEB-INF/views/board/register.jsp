@@ -10,7 +10,7 @@
 </div>
 
 <!-- 작성 form -->
-<div class="row container card form-group border-success"
+<div class="row container card form-group border-coffee"
 	style="padding: 1%; margin: 2%">
 	<form name='write_form' method='post' style="margin-top: 1%; margin: 2%">		
 		<div class="form-check-inline form-group ">
@@ -19,7 +19,7 @@
 				    <label for="member_name">작성자</label>
 				</strong>				
 				<input type="text" id="member_name" name="member_id" value="<sec:authentication property="principal.user.nickname"/>" 
-				       readonly="readonly" class="form-control border-success" >
+				       readonly="readonly" class="form-control border-coffee" >
 			</div>&nbsp; &nbsp;			
 		</div>
 		<div class="form-group text-dark">
@@ -27,18 +27,18 @@
 			    <label for="write_time">제목</label>
 			</strong>
 			<div class="form-check-inline col-xl-12">
-				<input type='text' id="write_time" class="form-control border-success" 
+				<input type='text' id="write_time" class="form-control border-coffee" 
 				       placeholder="제목을 입력하세요" name='title'>
 			</div>
 		</div>
 		<div class=" text-dark form-group">
-			<textarea class="form-control border-success" rows="20"
+			<textarea class="form-control border-coffee" rows="20"
 				style="margin-top: 0px; margin-bottom: 0px; height: 20rem;"
 				cols="90" placeholder="내용을 입력하세요" name="content" id="d_content"></textarea>
 		</div>
 		<div class="form-group">
-			<input class="btn btn-info" type="submit" value="작성"> &nbsp;
-			<input class="btn btn-success" type="button" onClick="Reset()" value="다시 쓰기">
+			<input class="btn btn-brown" type="submit" value="작성"> &nbsp;
+			<input class="btn btn-coffee" type="button" onClick="Reset()" value="다시 쓰기">
 		</div>
 	</form>
 </div>

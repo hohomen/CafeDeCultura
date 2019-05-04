@@ -25,7 +25,7 @@
                     type="password" class="form-control" />
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-warning btn-block m-t-md text-dark" value="Login" />                
+                <input type="submit" class="btn btn-coffee btn-block m-t-md text-dark" value="Login" />                
             </div>
             <hr />
         </form>

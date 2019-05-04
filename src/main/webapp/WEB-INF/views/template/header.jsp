@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
 	  name='viewport'>
-<link href="/resources/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="/resources/css/business-frontpage.css" rel="stylesheet" type="text/css" />
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 	  rel="stylesheet" type="text/css" />	  
@@ -45,14 +45,19 @@
 					        <a class="nav-link" href="/user/loginForm">로그인</a>
 					    </li>
 					</sec:authorize>
-					<sec:authorize access="isAuthenticated()">
-					    <li class="nav-item"><a class="nav-link" href="#">
-					       <sec:authentication property="principal.user.nickname"/></a>
-					    </li>					    
-					    <li class="nav-item">
-					        <a class="nav-link" href="/j_spring_security_logout">Logout</a>
-					    </li>
-					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">                  
+                        <li class="nav-item dropdown">                         
+                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               <sec:authentication property="principal.user.nickname"/>
+                           </a>                        
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#">정보 수정</a>
+                              <a class="dropdown-item" href="#">작성글 확인</a>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                          </div>                        
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/j_spring_security_logout">Logout</a></li>
+                    </sec:authorize>
 				</ul>
 			</div>
 		</div>

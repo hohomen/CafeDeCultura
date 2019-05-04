@@ -1,7 +1,7 @@
 
     //댓글 정보 가져오기
     function getAllList(){             
-       $.getJSON("/replies/all/"+ board_id, function(data){
+       $.getJSON("/replies/all/"+ G_BOARD_ID, function(data){
            var source = $('#template').html();
            var template = Handlebars.compile(source);
            $('#replies').html(template(data));
@@ -56,7 +56,7 @@
             },
             dataType : 'text',
             data : JSON.stringify({
-                board_id : board_id,
+                board_id : G_BOARD_ID,
                 replyer : replyer,
                 replytext : replytext
             }),

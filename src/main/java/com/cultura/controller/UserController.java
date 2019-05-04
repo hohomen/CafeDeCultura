@@ -41,11 +41,14 @@ public class UserController {
     @Inject
     private UserDAO dao;    
     @RequestMapping(value = "/checkId/{userId}", method = RequestMethod.POST)
-    public ResponseEntity<UserVO> checkId(@PathVariable("userId") String userId) throws Exception {
-        ResponseEntity<UserVO> entity = null;
+    public ResponseEntity<Integer> checkId(@PathVariable("userId") String userId) throws Exception {
+        ResponseEntity<Integer> entity = null;
         try {
-            entity = new ResponseEntity<>(dao.readId(userId), HttpStatus.OK);
-
+            if(dao.readId(userId) != null)
+                entity = new ResponseEntity<>(1, HttpStatus.OK);
+            else
+                entity = new ResponseEntity<>(0, HttpStatus.OK);
+            
         } catch (Exception e) {
             e.printStackTrace();
             entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -54,11 +57,14 @@ public class UserController {
     }
     
     @RequestMapping(value = "/checkNickname/{nickname}", method = RequestMethod.POST)
-    public ResponseEntity<UserVO> checkNickname(@PathVariable("nickname") String nickname) throws Exception {
-        ResponseEntity<UserVO> entity = null;
+    public ResponseEntity<Integer> checkNickname(@PathVariable("nickname") String nickname) throws Exception {            
+        ResponseEntity<Integer> entity = null;
         try {
-            entity = new ResponseEntity<>(dao.readNickname(nickname), HttpStatus.OK);
-
+            if(dao.readNickname(nickname) != null)
+                entity = new ResponseEntity<>(1, HttpStatus.OK);
+            else
+                entity = new ResponseEntity<>(0, HttpStatus.OK);
+            
         } catch (Exception e) {
             e.printStackTrace();
             entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
