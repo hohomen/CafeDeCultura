@@ -33,5 +33,15 @@ public class UserDAOImpl implements UserDAO {
     public void createAuth(AuthVO auth) throws Exception {
         session.insert(namespace+".createAuth", auth);
     }
+
+    @Override
+    public void updateUser(UserVO user) throws Exception {
+        session.update(namespace+".updateUserInfo", user);        
+    }
+
+    @Override
+    public UserVO readUser(String id) throws Exception {
+        return session.selectOne(namespace+".readUserInfo", id);
+    }
     
 }

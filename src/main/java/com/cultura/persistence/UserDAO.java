@@ -8,5 +8,7 @@ public interface UserDAO {
     public UserVO readNickname(String nickname) throws Exception;
     public void createUser(UserVO user) throws Exception;
     public void createAuth(AuthVO auth) throws Exception;
+    public void updateUser(UserVO user) throws Exception;
+    public UserVO readUser(String id)throws Exception;
 }
 

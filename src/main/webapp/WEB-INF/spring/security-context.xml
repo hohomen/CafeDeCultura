@@ -8,7 +8,8 @@
     <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
     
     <security:http use-expressions="true">        
-        <security:intercept-url pattern="/board/register*/**" access="isAuthenticated()" />
+        <security:intercept-url pattern="/board/register/**" access="isAuthenticated()" />
+        <security:intercept-url pattern="/user/userInfo/**" access="isAuthenticated()" />
         <security:intercept-url pattern="/**" access="permitAll"/>
         <security:form-login login-page="/user/loginForm" login-processing-url="/login" />        
         <security:logout logout-success-url="/home"/>

@@ -9,8 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cultura.domain.AuthVO;
@@ -76,7 +78,26 @@ public class UserController {
     private UserService service;
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registPOST(UserVO user, AuthVO auth, RedirectAttributes rttr) throws Exception {             
-        service.createIdentification(user, auth);        
+        service.createIdentification(user, auth);
         return "redirect:/home";
     }
+    
+    @RequestMapping(value = "/userInfo", method = RequestMethod.POST)
+    public void readUser(@RequestParam("userId") String userId) throws Exception{
+        
+    }
+    
+    @RequestMapping(value = "/modify/{userId}", method = { RequestMethod.PUT, RequestMethod.PATCH })
+    public ResponseEntity<String> modifyUserInfo(@PathVariable("userId") String userId, @RequestBody UserVO user) {
+        ResponseEntity<String> entity = null;
+        try {
+          service.modifyUserInfo(user);
+          entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+        } catch (Exception e) {
+          e.printStackTrace();
+          entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return entity;
+    }
+    
 }

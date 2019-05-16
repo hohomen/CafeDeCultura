@@ -51,7 +51,7 @@
                                <sec:authentication property="principal.user.nickname"/>
                            </a>                        
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#">정보 수정</a>
+                              <div class="dropdown-item" id="userInfo">정보 수정</div>
                               <a class="dropdown-item" href="#">작성글 확인</a>
                               <a class="dropdown-item" href="#">Something else here</a>
                           </div>                        
@@ -84,3 +84,14 @@
 			</div>
 		</div>
 	</div>
+	<sec:authorize access="isAuthenticated()">
+	    <sec:authentication property="principal.user.userId" var="authUserId"/>
+	</sec:authorize>
+	<form role="form" action="/user/userInfo" method="post">
+	    <input type="hidden" name='userId' value="${authUserId}">
+	</form>
+	<script>
+	$("#userInfo").on("click", function(){		
+		$("form[role='form']").submit();	
+	});
+	</script>

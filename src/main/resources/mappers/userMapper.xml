@@ -10,10 +10,11 @@
         <result property="userId" column="userId"/>
         <result property="userPw" column="userPw"/>
         <result property="nickname" column="nickname"/>
+        <result property="email" column="email"/>
         <result property="regDate" column="regDate"/>
         <result property="updateDate" column="updateDate"/>
         <result property="enabled" column="enabled"/>
-        <collection property="authList" resultMap="authMap"></collection> 
+        <collection property="authList" resultMap="authMap"></collection>
       </resultMap>
       
       <resultMap type="com.cultura.domain.AuthVO" id="authMap">
@@ -21,8 +22,8 @@
         <result property="auth" column="auth"/>
       </resultMap>
       
-      <select id="read" resultMap="userMap">
-          SELECT mem.userId,  userPw, nickname, enabled, regDate, updateDate, auth
+      <select id="readUserAuth" resultMap="userMap">
+          SELECT mem.userId,  userPw, nickname, email, enabled, regDate, updateDate, auth
           FROM user_tb mem LEFT OUTER JOIN user_auth_tb auth on mem.userId = auth.userId 
           WHERE mem.userId = #{userId} 
       </select>
@@ -40,13 +41,25 @@
       </select>
       
       <insert id="createUser">
-          INSERT INTO USER_TB(USERID, USERPW, NICKNAME, EMAIL)
-          VALUES(#{userId}, #{userPw}, #{nickname}, #{email})
+     INSERT INTO USER_TB(USERID, USERPW, NICKNAME, EMAIL)
+          VALUES (#{userId}, #{userPw}, #{nickname}, #{email})
       </insert>
       
       <insert id="createAuth">
-          INSERT INTO USER_AUTH_TB(USERID, auth)
-          VALUES(#{userId}, #{auth})
+     INSERT INTO user_auth_tb(USERID, auth)
+          VALUES (#{userId}, #{auth})
       </insert> 
+      
+      <update id="updateUserInfo">
+          UPDATE user_tb 
+             SET nickname = #{nickname}, email = #{email}               
+           WHERE userId = #{userId}
+      </update>
+      
+      <select id="readUserInfo" resultType="UserVO">
+          SELECT *
+            FROM user_tb 
+           WHERE userId = #{userId} 
+      </select>
     
   </mapper>

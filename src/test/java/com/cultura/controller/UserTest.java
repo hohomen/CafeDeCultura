@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -23,18 +24,18 @@ public class UserTest {
     private static Logger logger = LoggerFactory.getLogger(UserTest.class);
 
     @Test @Ignore
-    public void testReadUser() {
+    public void testReadId() {
         try {
-            logger.info(dao.readId("choi").toString());
+            logger.info(dao.readId("cho").toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
-    @Test 
+    @Test @Ignore
     public void testReadNickname() {
         try {
-            logger.info(dao.readNickname("최동호").toString());
+            logger.info(dao.readNickname("최동").toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,6 +55,7 @@ public class UserTest {
             e.printStackTrace();
         }        
     }
+    
     @Test @Ignore
     public void testCreateAuth(){
         AuthVO auth = new AuthVO();
@@ -66,4 +68,28 @@ public class UserTest {
             e.printStackTrace();
         }
     }
+            
+    @Test
+    public void testUpdateUser(){
+        UserVO user = new UserVO();        
+        user.setNickname("헬로우");
+        user.setEmail("choi3");
+        user.setUserId("choi3");
+        try {
+            dao.updateUser(user);;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void testReadUser(){
+        String userId = "choi3";
+        try {
+            dao.readUser(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 }
