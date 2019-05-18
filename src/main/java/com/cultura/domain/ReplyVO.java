@@ -3,24 +3,37 @@ package com.cultura.domain;
 import java.util.Date;
 
 public class ReplyVO {
-    private Integer reply_id;
-    private Integer board_id;
+    private Integer replyId;    
     private String replytext;
     private String replyer;
-    private Date reg_date;
-    private Date update_date;
+    private Date regDate;
+    private Integer boardId;
+    private String nickname;
     
-    public Integer getReply_id() {
-        return reply_id;
+        
+    public String getNickname() {
+        return nickname;
     }
-    public void setReply_id(Integer reply_id) {
-        this.reply_id = reply_id;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
-    public Integer getBoard_id() {
-        return board_id;
+    public Integer getReplyId() {
+        return replyId;
     }
-    public void setBoard_id(Integer board_id) {
-        this.board_id = board_id;
+    public void setReplyId(Integer replyId) {
+        this.replyId = replyId;
+    }
+    public Integer getBoardId() {
+        return boardId;
+    }
+    public void setBoardId(Integer boardId) {
+        this.boardId = boardId;
+    }
+    public Date getRegDate() {
+        return regDate;
+    }
+    public void setRegDate(Date regDate) {
+        this.regDate = regDate;
     }
     public String getReplytext() {
         return replytext;
@@ -34,18 +47,5 @@ public class ReplyVO {
     public void setReplyer(String replyer) {
         this.replyer = replyer;
     }
-    public Date getReg_date() {
-        return reg_date;
-    }
-    public void setReg_date(Date reg_date) {
-        this.reg_date = reg_date;
-    }
-    public Date getUpdate_date() {
-        return update_date;
-    }
-    public void setUpdate_date(Date update_date) {
-        this.update_date = update_date;
-    }
-    
     
 }

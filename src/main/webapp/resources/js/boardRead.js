@@ -43,7 +43,6 @@
             alert("내용을 입력해 주세요.");
             return;
         }
-     	//로그인시에 댓글 처리 되도록 해야할 듯
         var replyer = $("#newReplyWriter").val();
         var replytext = $("#newReplyText").val();
         
@@ -56,14 +55,14 @@
             },
             dataType : 'text',
             data : JSON.stringify({
-                board_id : G_BOARD_ID,
+                boardId : G_BOARD_ID,
                 replyer : replyer,
                 replytext : replytext
             }),
             success : function(result) {
     
                 if (result == 'SUCCESS') {    
-                    alert("등록 되었습니다.");                    
+                    alert("등록 되었습니다.");
                     getAllList();
                     $("#newReplyText").val("");
                 }
@@ -86,9 +85,8 @@
               dataType:'text', 
               success:function(result){
                   console.log("result: " + result);
-                  if(result == 'SUCCESS'){                	  
+                  if(result == 'SUCCESS'){
                       alert("수정 되었습니다.");
-                      //getPageList(replyPage);
                   }
           }});
           //댓글 수정 뒤의 UI처리
@@ -141,6 +139,6 @@
         formObj.submit();
     });
     
-    $(document).ready(function() {
-    	getAllList();    	
+    $(document).ready(function() {    	
+    	getAllList();	
     });

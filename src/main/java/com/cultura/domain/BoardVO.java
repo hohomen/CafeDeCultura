@@ -3,28 +3,45 @@ package com.cultura.domain;
 import java.util.Date;
 
 public class BoardVO {
-	private Integer board_id;
+	private Integer boardId;
 	private String title;
 	private String content;
-	private Date reg_date;
-	private int view_cnt;
-	private String member_id;
-	private int reply_cnt;
-	
-	
-	public int getReply_cnt() {
-        return reply_cnt;
+	private Date regDate;
+	private int viewCnt;	
+	private int replyCnt;	
+	private String userId;
+	private String nickname;
+    	
+    public String getNickname() {
+        return nickname;
     }
-    public void setReply_cnt(int reply_cnt) {
-        this.reply_cnt = reply_cnt;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
-   
-	public Integer getBoard_id() {
-        return board_id;
+    public Integer getBoardId() {
+        return boardId;
     }
-    public void setBoard_id(Integer board_id) {
-        this.board_id = board_id;
+    public void setBoardId(Integer boardId) {
+        this.boardId = boardId;
     }
+    public String getUserId() {
+        return userId;
+    }
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+    public int getViewCnt() {
+        return viewCnt;
+    }
+    public void setViewCnt(int viewCnt) {
+        this.viewCnt = viewCnt;
+    }
+    public int getReplyCnt() {
+        return replyCnt;
+    }
+    public void setReplyCnt(int replyCnt) {
+        this.replyCnt = replyCnt;
+    }    
     public String getTitle() {
 		return title;
 	}
@@ -36,31 +53,18 @@ public class BoardVO {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public Date getReg_date() {
-		return reg_date;
-	}
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
-	}
-	public int getView_cnt() {
-		return view_cnt;
-	}
-	public void setView_cnt(int view_cnt) {
-		this.view_cnt = view_cnt;
-	}
-	public String getMember_id() {
-		return member_id;
-	}
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
-	}
-	
-	@Override
-	public String toString() {
-		return "BoardVO [board_id=" + board_id + ", title=" + title + ", content=" + content + ", reg_date=" + reg_date
-				+ ", view_cnt=" + view_cnt + ", member_id=" + member_id + "]";
-	}
-	
-	
+	}	
+	public Date getRegDate() {
+        return regDate;
+    }
+    public void setRegDate(Date regDate) {
+        this.regDate = regDate;
+    }
+    
+    @Override
+    public String toString() {
+        return "BoardVO [boardId=" + boardId + ", title=" + title + ", content=" + content + ", regDate=" + regDate
+                + ", viewCnt=" + viewCnt + ", replyCnt=" + replyCnt + ", userId=" + userId + "]";
+    }    
+    
 }

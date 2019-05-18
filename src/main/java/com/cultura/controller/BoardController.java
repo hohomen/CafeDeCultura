@@ -2,8 +2,6 @@ package com.cultura.controller;
 
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,15 +31,15 @@ public class BoardController {
     }
     
     @RequestMapping(value = "/read", method = RequestMethod.GET)
-    public void read(@RequestParam("board_id") int board_id, 
+    public void read(@RequestParam("boardId") int boardId, 
                      @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {        
-        model.addAttribute(service.read(board_id));
-    }    
+        model.addAttribute(service.read(boardId));
+    }
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
-    public String remove(@RequestParam("board_id") int board_id, 
+    public String remove(@RequestParam("boardId") int boardId, 
                          SearchCriteria cri, RedirectAttributes rttr) throws Exception {        
-      service.delete(board_id);
+      service.delete(boardId);
       rttr.addAttribute("page", cri.getPage());
       rttr.addAttribute("perPageNum", cri.getPerPageNum());
       rttr.addAttribute("searchType", cri.getSearchType());
@@ -51,8 +49,8 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/modify", method = RequestMethod.GET)
-    public void modifyPagingGET(int board_id, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-      model.addAttribute(service.read(board_id));
+    public void modifyPagingGET(int boardId, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+      model.addAttribute(service.read(boardId));
     }
 
     @RequestMapping(value = "/modify", method = RequestMethod.POST)
@@ -68,7 +66,6 @@ public class BoardController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public void registGET() throws Exception {
-
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)

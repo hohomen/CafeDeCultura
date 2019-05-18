@@ -24,14 +24,14 @@ public class ReplyServiceImpl implements ReplyService{
     @Override
     public void create(ReplyVO vo) throws Exception {
         replyDAO.create(vo);
-        boardDAO.updateReplyCnt(vo.getBoard_id(), 1);
+        boardDAO.updateReplyCnt(vo.getBoardId(), 1);
     }
     
     @Transactional(isolation=Isolation.READ_COMMITTED)
     @Override
-    public List<ReplyVO> list(Integer board_id) throws Exception {
-        boardDAO.updateViewCnt(board_id);
-        return replyDAO.list(board_id);
+    public List<ReplyVO> list(Integer boardId) throws Exception {
+        boardDAO.updateViewCnt(boardId);
+        return replyDAO.list(boardId);
     }
 
     @Override
@@ -41,10 +41,10 @@ public class ReplyServiceImpl implements ReplyService{
     
     @Transactional
     @Override
-    public void delete(Integer reply_id) throws Exception {
-        int board_id = replyDAO.getBoard_id(reply_id);
-        replyDAO.delete(reply_id);
-        boardDAO.updateReplyCnt(board_id, -1);
+    public void delete(Integer replyId) throws Exception {
+        int boardId = replyDAO.getBoardId(replyId);
+        replyDAO.delete(replyId);
+        boardDAO.updateReplyCnt(boardId, -1);
     }
     
     

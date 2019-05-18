@@ -18,8 +18,8 @@ public class ReplyDAOImpl implements ReplyDAO{
     private static String namespace = "com.cultura.mapper.ReplyMapper";
     
     @Override
-    public List<ReplyVO> list(Integer board_id) throws Exception {
-        return session.selectList(namespace + ".list", board_id);
+    public List<ReplyVO> list(Integer boardId) throws Exception {
+        return session.selectList(namespace + ".list", boardId);
     }
 
     @Override
@@ -33,14 +33,13 @@ public class ReplyDAOImpl implements ReplyDAO{
     }
 
     @Override
-    public void delete(Integer reply_id) throws Exception {
-    session.update(namespace + ".delete", reply_id);        
+    public void delete(Integer replyId) throws Exception {
+    session.update(namespace + ".delete", replyId);        
     }
 
     @Override
-    public int getBoard_id(Integer reply_id) throws Exception {
-        return session.selectOne(namespace + ".getBoardId", reply_id);
-    }
-    
+    public int getBoardId(Integer replyId) throws Exception {
+        return session.selectOne(namespace + ".getBoardId", replyId);
+    }   
     
 }

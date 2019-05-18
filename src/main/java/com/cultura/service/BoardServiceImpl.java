@@ -21,8 +21,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO read(Integer board_id) throws Exception {
-		return dao.read(board_id);
+	public BoardVO read(Integer boardId) throws Exception {
+		return dao.read(boardId);
 	}
 
 	@Override
@@ -31,24 +31,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void delete(Integer board_id) throws Exception {
-		dao.delete(board_id);		
+	public void delete(Integer boardId) throws Exception {
+		dao.delete(boardId);		
 	}
-
-	@Override
-	public List<BoardVO> listAll() throws Exception {
-		return dao.listAll();
-	}
-
-    @Override
-    public List<BoardVO> listCriteria(Criteria cri) throws Exception {        
-        return dao.listCriteria(cri);
-    }
-
-    @Override
-    public int listCountCriteria(Criteria cri) throws Exception {        
-        return dao.countPaging(cri);
-    }
 
     @Override
     public List<BoardVO> listSearchCriteria(SearchCriteria cri) throws Exception {

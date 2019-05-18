@@ -36,12 +36,12 @@ public class ReplyController {
       return entity;
     }
     
-    @RequestMapping(value = "/all/{board_id}", method = RequestMethod.GET)
-    public ResponseEntity<List<ReplyVO>> list(@PathVariable("board_id") Integer board_id) {
+    @RequestMapping(value = "/all/{boardId}", method = RequestMethod.GET)
+    public ResponseEntity<List<ReplyVO>> list(@PathVariable("boardId") Integer boardId) {
 
       ResponseEntity<List<ReplyVO>> entity = null;
       try {
-        entity = new ResponseEntity<>(service.list(board_id), HttpStatus.OK);
+        entity = new ResponseEntity<>(service.list(boardId), HttpStatus.OK);
 
       } catch (Exception e) {
         e.printStackTrace();
@@ -51,12 +51,12 @@ public class ReplyController {
       return entity;
     }
     
-    @RequestMapping(value = "/{reply_id}", method = { RequestMethod.PUT, RequestMethod.PATCH })
-    public ResponseEntity<String> update(@PathVariable("reply_id") Integer reply_id, @RequestBody ReplyVO vo) {
+    @RequestMapping(value = "/{replyId}", method = { RequestMethod.PUT, RequestMethod.PATCH })
+    public ResponseEntity<String> update(@PathVariable("replyId") Integer replyId, @RequestBody ReplyVO vo) {
 
       ResponseEntity<String> entity = null;
       try {
-        vo.setReply_id(reply_id);
+        vo.setReplyId(replyId);
         service.update(vo);
 
         entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
@@ -67,12 +67,12 @@ public class ReplyController {
       return entity;
     }
     
-    @RequestMapping(value = "/{reply_id}", method = RequestMethod.DELETE)
-    public ResponseEntity<String> remove(@PathVariable("reply_id") Integer reply_id) {
+    @RequestMapping(value = "/{replyId}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> remove(@PathVariable("replyId") Integer replyId) {
 
       ResponseEntity<String> entity = null;
       try {
-        service.delete(reply_id);
+        service.delete(replyId);
         entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
       } catch (Exception e) {
         e.printStackTrace();

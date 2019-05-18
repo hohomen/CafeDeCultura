@@ -5,14 +5,15 @@
 <link href="/resources/css/board.css" rel="stylesheet" type="text/css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <sec:authorize access="isAuthenticated()">
-    <sec:authentication property="principal.user.nickname" var="authNickname"/>
+    <sec:authentication property="principal.user.userId" var="authUserId"/>
 </sec:authorize>
 <script>
-    var G_BOARD_ID = ${boardVO.board_id }; //게시글 번호    
-    //Handlebars 댓글 작성자 확인
+
+    var G_BOARD_ID = ${boardVO.boardId }; //게시글 번호    
+    //Handlebars 댓글 작성자 확인    
     Handlebars.registerHelper("eqReplyer", function(replyer, block){
         var accum = '';
-        if(replyer == "${authNickname}"){
+        if(replyer == "${authUserId}"){
             accum += block.fn();
         }
         return accum;
@@ -20,22 +21,23 @@
 </script>
 
 <form role="form" method="post">
-    <input type='hidden' name='board_id' value="${boardVO.board_id}">
+    <input type='hidden' name='boardId' value="${boardVO.boardId}">
     <input type='hidden' name='page' value="${cri.page}">
     <input type='hidden' name='perPageNum' value="${cri.perPageNum}">
     <input type='hidden' name='searchType' value="${cri.searchType}">
     <input type='hidden' name='keyword' value="${cri.keyword}">    
 </form>
+
 <div class="container col-md-10 card border2 border-coffee"
     style="margin-top: 2%;">
     <div style="margin: 1%; margin-left: 1%; margin-top: 2%">
         <div class="row ">
             <h5 class="text-dark col-md-9">
-                <strong> ${boardVO.member_id} > </strong> ${boardVO.title }
+                <strong> ${boardVO.nickname} > </strong> ${boardVO.title }
             </h5>
             <div class="col-md-3">
                 <fmt:formatDate pattern="yyyy-MM-dd HH:mm"
-                    value="${boardVO.reg_date}" />
+                    value="${boardVO.regDate}" />
             </div>
         </div>
     </div>
@@ -49,7 +51,7 @@
     <div class="box-footer">
         <button type="submit" id ="listPage" class="btn btn-coffee pull-right">목록으로</button>
         <sec:authorize access="isAuthenticated()">
-            <c:if test="${authNickname eq boardVO.member_id }">
+            <c:if test="${authUserId eq boardVO.userId }">
                 <button type="submit" id ="writeModifyBtn" class="btn btn-coffee">수정</button>
                 <button type="submit" id ="writeAddBtn" class="btn btn-brown">삭제</button> 
             </c:if>
@@ -65,7 +67,7 @@
                 <textarea id = "newReplyText" name="replytext" rows="3" placeholder="댓글을 입력해 주세요." class="form-control"></textarea>
             </div>
             <div class="col-md-1" style="padding-top: 38px">                        
-                    <input type="hidden" name="replyer" id='newReplyWriter' value="${authNickname }">
+                    <input type="hidden" name="replyer" id='newReplyWriter' value="${authUserId }">
                     <input id="replyAddBtn" class="btn btn-coffee" Type='Submit' Value='등록'></input>         
             </div>
         </div>
@@ -83,12 +85,12 @@
 <div id="replies" class="container col-md-10">    
     <script id="template" type="text/x-handlebars-template">
          {{#each .}}    
-             <div class="card" id="{{reply_id}}">
+             <div class="card" id="{{replyId}}">
                  <div class="card-body">
                      <div class="row" >                
                          <div class="col-md-12">
                             <p>
-                                <strong>{{replyer}}</strong>  
+                                <strong>{{nickname}}</strong>
                             </p>
                             <div class="clearfix"></div>
                             <pre class=pretag >{{replytext}}</pre>
@@ -104,5 +106,5 @@
     </script> 
 </div>
 
-<script src="/resources/js/boardRead.js" ></script>
+<script src="/resources/js/boardRead.js"></script>
 <%@ include file="../template/footer.jsp"%>

@@ -15,8 +15,7 @@
 
 <!-- Header with phrase and search bar -->
 <div class='row ' style="padding-bottom: 1%; padding-top: 3%;">
-	<div class="col-md-12 header2"
-		style="text-align: center; padding: 10px;">
+	<div class="col-md-12 header2" style="text-align: center; padding: 10px;">
 		<h2 style="color: c0392b;">
 			<strong class="mainfont">문화인을 위한 공간</strong>
 		</h2>
@@ -60,16 +59,16 @@
             <tr  style="height: 6em;">                
                 <td style="width: 87%; padding-left: 2em;">
                     <h5>
-                        <a href='/board/read${pageMaker.makeSearch(pageMaker.cri.page)}&board_id=${boardVO.board_id}'>${boardVO.title} </a>
+                        <a href='/board/read${pageMaker.makeSearch(pageMaker.cri.page)}&boardId=${boardVO.boardId}'>${boardVO.title} </a>
                     </h5>
-                    ${boardVO.member_id}&nbsp;
+                    ${boardVO.nickname}&nbsp;
                     <small class="text-muted"> 
-                        <fmt:formatDate pattern="yy.MM.dd HH:mm" value="${boardVO.reg_date}" /> 
-                        &nbsp;조회수&nbsp;${boardVO.view_cnt} 
+                        <fmt:formatDate pattern="yy.MM.dd HH:mm" value="${boardVO.regDate}" /> 
+                        &nbsp;조회수&nbsp;${boardVO.viewCnt} 
                     </small>
                 </td>             
                 <td style="width: 13%; text-align: center;">
-                    <h3>${boardVO.reply_cnt}</h3>
+                    <h3>${boardVO.replyCnt}</h3>
                                         댓글
                 </td>
             </tr>        
@@ -85,18 +84,18 @@
                            class="page-link">&laquo;</a></li>
                 </c:if>
 
-                <c:forEach begin="${pageMaker.startPage }"
-                    end="${pageMaker.endPage }" var="idx">
-                    <li class="page-item ml-2"
-                        <c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
+                <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+                    <li class="page-item ml-2 "
+                        <c:out value="${pageMaker.cri.page == idx?'class = active':''}"/>>
                         <a href="${pageMaker.makeSearch(idx)}" class="page-link">${idx}</a>
                     </li>
                 </c:forEach>
                 
                 <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-                    <li class="page-item ml-2"><a
-                        href="${pageMaker.makeSearch(pageMaker.endPage +1) }"
-                        class="page-link">&raquo;</a></li>
+                    <li class="page-item ml-2 ">
+                        <a href="${pageMaker.makeSearch(pageMaker.endPage +1) }"
+                           class="page-link">&raquo;</a>
+                    </li>
                 </c:if>
             </ul>
         </div>

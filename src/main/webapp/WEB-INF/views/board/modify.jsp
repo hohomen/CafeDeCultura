@@ -16,7 +16,7 @@
         <input type='hidden' name='perPageNum' value="${cri.perPageNum}">
         <input type='hidden' name='searchType' value="${cri.searchType}">
         <input type='hidden' name='keyword' value="${cri.keyword}"> 
-        <input type="hidden" name="board_id" value="${boardVO.board_id}">    
+        <input type="hidden" name="boardId" value="${boardVO.boardId}">    
            
         <div class="form-check-inline form-group ">
             <div class=" text-dark">
@@ -24,7 +24,7 @@
                     <label for="member_name">작성자</label>
                 </strong>               
                 <input type="text" class="form-control border-coffee" id="member_name"
-                       name="member_id" value="${boardVO.member_id}" readonly="readonly">
+                       name="userId" value="${boardVO.nickname}" readonly="readonly">
             </div>&nbsp; &nbsp;         
         </div>
         <div class="form-group text-dark">
@@ -64,7 +64,7 @@
         $("#modifyCancelBtn").on("click", function(){
             self.location = "/board/read?page=${cri.page}&perPageNum=${cri.perPageNum}"
                             +"&searchType=${cri.searchType}&keyword=${cri.keyword}"
-                            +"&board_id=+${boardVO.board_id}";
+                            +"&boardId=+${boardVO.boardId}";
         });
         $("#modifyWriteBtn").on("click", function(){
             formObj.submit();

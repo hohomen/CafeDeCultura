@@ -12,9 +12,6 @@ public interface BoardService {
 	public BoardVO read(Integer board_id)throws Exception;
 	public void update(BoardVO board)throws Exception;
 	public void delete(Integer board_id)throws Exception;
-	public List<BoardVO> listAll() throws Exception;	
-	public List<BoardVO> listCriteria(Criteria cri)throws Exception;
-	public int listCountCriteria(Criteria cri)throws Exception;
 	public List<BoardVO> listSearchCriteria(SearchCriteria cri)throws Exception;
     public int listSearchCount(SearchCriteria cri)throws Exception;
 }

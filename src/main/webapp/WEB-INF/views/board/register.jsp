@@ -12,13 +12,14 @@
 <!-- 작성 form -->
 <div class="row container card form-group border-coffee"
 	style="padding: 1%; margin: 2%">
-	<form name='write_form' method='post' style="margin-top: 1%; margin: 2%">		
+	<form name='write_form' method='post' style="margin-top: 1%; margin: 2%">	
+	    <input type="hidden" name="userId" value="<sec:authentication property="principal.user.userId"/>" />	
 		<div class="form-check-inline form-group ">
 			<div class=" text-dark">
 				<strong>
 				    <label for="member_name">작성자</label>
 				</strong>				
-				<input type="text" id="member_name" name="member_id" value="<sec:authentication property="principal.user.nickname"/>" 
+				<input type="text" id="nickname" name="nickname" value="<sec:authentication property="principal.user.nickname"/>" 
 				       readonly="readonly" class="form-control border-coffee" >
 			</div>&nbsp; &nbsp;			
 		</div>
