@@ -2,6 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="../template/header.jsp"%>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 
 <div class="jumbotron">
 	<h2>
@@ -29,13 +31,12 @@
 			</strong>
 			<div class="form-check-inline col-xl-12">
 				<input type='text' id="write_time" class="form-control border-coffee" 
-				       placeholder="제목을 입력하세요" name='title'>
+				       placeholder="제목을 입력하세요" name='title' required>
 			</div>
 		</div>
 		<div class=" text-dark form-group">
-			<textarea class="form-control border-coffee" rows="20"
-				style="margin-top: 0px; margin-bottom: 0px; height: 20rem;"
-				cols="90" placeholder="내용을 입력하세요" name="content" id="d_content"></textarea>
+			<textarea id="summernote" class="form-control border-coffee" 
+			          placeholder="내용을 입력하세요" name="content" required></textarea>
 		</div>
 		<div class="form-group">
 			<input class="btn btn-brown" type="submit" value="작성"> &nbsp;
@@ -44,11 +45,5 @@
 	</form>
 </div>
 
-<script>
-    // 다시 작성
-    function Reset() {
-        write_form.title.value = "";
-        write_form.d_content.value = "";
-    }
-</script>
+<script src="/resources/js/board/wrtie.js"></script>
 <%@ include file="../template/footer.jsp"%>

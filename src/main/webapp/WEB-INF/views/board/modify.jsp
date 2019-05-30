@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="../template/header.jsp"%>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 
 <div class="jumbotron">
 	<h2>
@@ -37,9 +39,8 @@
             </div>
         </div>
         <div class=" text-dark form-group">
-            <textarea class="form-control border-coffee" rows="20"
-                      style="margin-top: 0px; margin-bottom: 0px; height: 20rem;" cols="90" 
-                      placeholder="내용을 입력하세요" name="content" id="d_content">${boardVO.content}</textarea>
+            <textarea id="summernote" class="form-control border-coffee" 
+                      placeholder="내용을 입력하세요" name="content" required>${boardVO.content}</textarea>            
         </div>
     </form>
         
@@ -71,4 +72,5 @@
         });
     });
 </script>
+<script src="/resources/js/board/wrtie.js"></script>
 <%@ include file="../template/footer.jsp"%>

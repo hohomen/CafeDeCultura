@@ -43,8 +43,8 @@
     </div>
 </div>
 
-<div class="container col-md-10 border2 border-coffee" style="margin-top: 2%; margin-bottom: 0px;">
-    <textarea id='txtarea' readonly="readonly" style="width: 100%; height: 24em; border: 0; background: clear;" >${boardVO.content}</textarea>
+<div class="container col-md-10 border2 border-coffee" style="margin-top: 2%; margin-bottom: 0px; padding:2%;">
+${boardVO.content}
 </div>
 
 <div class="container col-md-10 " style="padding-bottom: 1%; margin-bottom: 4%; margin-top: 10px;">
@@ -57,6 +57,17 @@
             </c:if>
         </sec:authorize>
     </div>
+</div>
+<div id="replyDialog" style="width: 99%; display:none">
+    <form name="form3" action="board6ReplySave" method="post">
+        <input type="hidden" name="boardId" value="<c:out value="${boardVO.boardId}"/>"> 
+        <input type="hidden" name="replyId"> 
+        <input type="hidden" name="reParent"> 
+        작성자: <input type="text" name="replyer" size="20" maxlength="20"> <br/>
+        <textarea name="replyText" rows="3" cols="60" maxlength="500"></textarea>
+        <a href="#" onclick="fn_replyReplySave()">저장</a>
+        <a href="#" onclick="fn_replyReplyCancel()">취소</a>
+    </form>
 </div>
 
 <!-- 댓글 등록 -->
@@ -82,7 +93,7 @@
 </div>
 
 <!-- 댓글 출력 -->
-<div id="replies" class="container col-md-10">    
+<div id="replies" class="container col-md-10">
     <script id="template" type="text/x-handlebars-template">
          {{#each .}}    
              <div class="card" id="{{replyId}}">
@@ -106,5 +117,5 @@
     </script> 
 </div>
 
-<script src="/resources/js/boardRead.js"></script>
+<script src="/resources/js/board/read.js"></script>
 <%@ include file="../template/footer.jsp"%>
