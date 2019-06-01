@@ -5,7 +5,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
     <mapper namespace="com.cultura.mapper.UserMapper">
-      <resultMap type="com.cultura.domain.UserVO" id="userMap">
+      <resultMap type="com.cultura.model.UserVO" id="userMap">
         <id property="userId" column="userId"/>
         <result property="userId" column="userId"/>
         <result property="userPw" column="userPw"/>
@@ -14,16 +14,20 @@
         <result property="regDate" column="regDate"/>
         <result property="updateDate" column="updateDate"/>
         <result property="enabled" column="enabled"/>
+        <result property="blog" column="blog"/>
+        <result property="birth" column="birth"/>
+        <result property="address" column="address"/>
+        <result property="image" column="image"/>
         <collection property="authList" resultMap="authMap"></collection>
       </resultMap>
       
-      <resultMap type="com.cultura.domain.AuthVO" id="authMap">
+      <resultMap type="com.cultura.model.AuthVO" id="authMap">
         <result property="userId" column="userId"/>
         <result property="auth" column="auth"/>
       </resultMap>
       
       <select id="readUserAuth" resultMap="userMap">
-          SELECT mem.userId,  userPw, nickname, email, enabled, regDate, updateDate, auth
+          SELECT mem.userId,  userPw, nickname, email, enabled, regDate, updatedate, blog, birth, address, image, auth
           FROM user_tb mem LEFT OUTER JOIN user_auth_tb auth on mem.userId = auth.userId 
           WHERE mem.userId = #{userId} 
       </select>
@@ -41,8 +45,8 @@
       </select>
       
       <insert id="createUser">
-     INSERT INTO USER_TB(USERID, USERPW, NICKNAME, EMAIL)
-          VALUES (#{userId}, #{userPw}, #{nickname}, #{email})
+     INSERT INTO user_tb(userid, userpw, nickname, email, blog, birth, address, image)
+          VALUES (#{userId}, #{userPw}, #{nickname}, #{email}, #{blog}, #{birth}, #{address}, #{image})
       </insert>
       
       <insert id="createAuth">
@@ -52,7 +56,8 @@
       
       <update id="updateUserInfo">
           UPDATE user_tb 
-             SET nickname = #{nickname}, email = #{email}               
+             SET nickname = #{nickname}, email = #{email}, blog = #{blog},
+                 birth = #{birth}, address = #{address}, image = #{image}               
            WHERE userId = #{userId}
       </update>
       
