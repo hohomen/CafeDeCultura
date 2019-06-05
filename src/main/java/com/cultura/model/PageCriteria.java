@@ -1,11 +1,10 @@
-package com.cultura.domain;
+package com.cultura.model;
 
-public class Criteria {
-
+public class PageCriteria {
     private int page;
     private int perPageNum;
 
-    public Criteria() {
+    public PageCriteria() {
       this.page = 1;
       this.perPageNum = 10;
     }

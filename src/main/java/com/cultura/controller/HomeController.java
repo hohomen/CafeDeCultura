@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.cultura.domain.PageMaker;
-import com.cultura.domain.SearchCriteria;
+import com.cultura.model.SearchCriteria;
 import com.cultura.service.BoardService;
+import com.cultura.util.PageMaker;
 
 /**
  * Handles requests for the application home page.
@@ -21,10 +21,10 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-		model.addAttribute("list", service.listSearchCriteria(cri));        
+		model.addAttribute("list", service.listSearchCriteria(cri));
         PageMaker pageMaker = new PageMaker();
-        pageMaker.setCri(cri);        
-        pageMaker.setTotalCount(service.listSearchCount(cri));        
+        pageMaker.setCri(cri);
+        pageMaker.setTotalCount(service.listSearchCount(cri));
         model.addAttribute("pageMaker", pageMaker);		
 		return "home";
 	}
@@ -33,9 +33,9 @@ public class HomeController {
     public String listAll(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
         model.addAttribute("list", service.listSearchCriteria(cri));        
         PageMaker pageMaker = new PageMaker();
-        pageMaker.setCri(cri);        
-        pageMaker.setTotalCount(service.listSearchCount(cri));        
-        model.addAttribute("pageMaker", pageMaker);        
+        pageMaker.setCri(cri);
+        pageMaker.setTotalCount(service.listSearchCount(cri));
+        model.addAttribute("pageMaker", pageMaker);
         return "home";
     }
 }

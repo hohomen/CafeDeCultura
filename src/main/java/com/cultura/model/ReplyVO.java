@@ -1,16 +1,36 @@
-package com.cultura.domain;
+package com.cultura.model;
 
 import java.util.Date;
 
 public class ReplyVO {
     private Integer replyId;    
-    private String replytext;
+    private String replyText;
     private String replyer;
     private Date regDate;
     private Integer boardId;
     private String nickname;
-    
+    private String reParent;
+    private String reDepth;
+    private Integer reOrder;
         
+    public String getReParent() {
+        return reParent;
+    }
+    public void setReParent(String reParent) {
+        this.reParent = reParent;
+    }
+    public String getReDepth() {
+        return reDepth;
+    }
+    public void setReDepth(String reDepth) {
+        this.reDepth = reDepth;
+    }
+    public Integer getReOrder() {
+        return reOrder;
+    }
+    public void setReOrder(Integer reOrder) {
+        this.reOrder = reOrder;
+    }
     public String getNickname() {
         return nickname;
     }
@@ -35,11 +55,11 @@ public class ReplyVO {
     public void setRegDate(Date regDate) {
         this.regDate = regDate;
     }
-    public String getReplytext() {
-        return replytext;
+    public String getReplyText() {
+        return replyText;
     }
-    public void setReplytext(String replytext) {
-        this.replytext = replytext;
+    public void setReplyText(String replyText) {
+        this.replyText = replyText;
     }
     public String getReplyer() {
         return replyer;

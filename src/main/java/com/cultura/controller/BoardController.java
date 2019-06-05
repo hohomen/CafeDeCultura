@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.cultura.domain.BoardVO;
-import com.cultura.domain.PageMaker;
-import com.cultura.domain.SearchCriteria;
+import com.cultura.model.BoardVO;
+import com.cultura.model.SearchCriteria;
 import com.cultura.service.BoardService;
+import com.cultura.util.PageMaker;
 
 @Controller
 @RequestMapping("/board/*")
@@ -70,7 +70,7 @@ public class BoardController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registPOST(BoardVO board, RedirectAttributes rttr) throws Exception { 
-      service.create(board);
+      service.regist(board);
       rttr.addFlashAttribute("msg", "SUCCESS");
       return "redirect:/home";
     }

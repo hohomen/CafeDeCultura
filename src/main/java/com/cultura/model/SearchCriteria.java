@@ -1,6 +1,6 @@
-package com.cultura.domain;
+package com.cultura.model;
 
-public class SearchCriteria extends Criteria {
+public class SearchCriteria extends PageCriteria {
     private String searchType;
     private String keyword;
     

@@ -9,9 +9,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.cultura.domain.BoardVO;
-import com.cultura.domain.Criteria;
-import com.cultura.domain.SearchCriteria;
+import com.cultura.model.BoardVO;
+import com.cultura.model.SearchCriteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -21,7 +20,7 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	@Override
 	public void create(BoardVO vo) throws Exception {
-		session.insert(namespace+".create", vo);		
+		session.insert(namespace+".create", vo);
 	}
 
 	@Override

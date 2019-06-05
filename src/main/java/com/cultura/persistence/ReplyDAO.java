@@ -2,7 +2,7 @@ package com.cultura.persistence;
 
 import java.util.List;
 
-import com.cultura.domain.ReplyVO;
+import com.cultura.model.ReplyVO;
 
 public interface ReplyDAO {
     public List<ReplyVO> list(Integer board_id) throws Exception;

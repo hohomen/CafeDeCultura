@@ -44,7 +44,7 @@
             return;
         }
         var replyer = $("#newReplyWriter").val();
-        var replytext = $("#newReplyText").val();
+        var replyText = $("#newReplyText").val();
         
         $.ajax({
             type : 'post',
@@ -57,7 +57,7 @@
             data : JSON.stringify({
                 boardId : G_BOARD_ID,
                 replyer : replyer,
-                replytext : replytext
+                replyText : replyText
             }),
             success : function(result) {
     
@@ -74,7 +74,7 @@
     //댓글 수정
     $("#replies").on("click", '#replyModAdd', function(){
         var replyId = $(this).parent().parent().parent().parent().attr("id");        
-        var replytext = $(this).prev().prev().val();        
+        var replyText = $(this).prev().prev().val();        
         
         $.ajax({
               type:'put',
@@ -82,7 +82,7 @@
               headers: { 
                     "Content-Type": "application/json",
                     "X-HTTP-Method-Override": "PUT" },
-              data:JSON.stringify({replytext:replytext}), 
+              data:JSON.stringify({replyText:replyText}), 
               dataType:'text', 
               success:function(result){
                   console.log("result: " + result);
@@ -95,7 +95,7 @@
           //댓글 수정 뒤의 UI처리
           $(this).prev().prev().remove();
           $(this).prev().before(preTag);
-          $(this).prev().prev().text(replytext);
+          $(this).prev().prev().text(replyText);
           $(this).prev().attr("id", "replyDelBtn");
           $(this).prev().text("삭제");
           $(this).attr("id", "replyModBtn"); 

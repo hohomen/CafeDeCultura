@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.cultura.domain.ReplyVO;
+import com.cultura.model.ReplyVO;
 
 @Repository
 public class ReplyDAOImpl implements ReplyDAO{

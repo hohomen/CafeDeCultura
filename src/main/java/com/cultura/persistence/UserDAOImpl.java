@@ -5,8 +5,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.cultura.domain.AuthVO;
-import com.cultura.domain.UserVO;
+import com.cultura.model.AuthVO;
+import com.cultura.model.UserVO;
 
 @Repository
 public class UserDAOImpl implements UserDAO {

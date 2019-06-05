@@ -1,7 +1,10 @@
-package com.cultura.domain;
+package com.cultura.util;
 
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import com.cultura.model.PageCriteria;
+import com.cultura.model.SearchCriteria;
 
 public class PageMaker {
     private int totalCount;
@@ -10,9 +13,9 @@ public class PageMaker {
     private boolean prev;
     private boolean next;
     private int displayPageNum = 10;
-    private Criteria cri;
+    private PageCriteria cri;
 
-    public void setCri(Criteria cri) {
+    public void setCri(PageCriteria cri) {
         this.cri = cri;
     }
     
@@ -56,7 +59,7 @@ public class PageMaker {
         return displayPageNum;
     }
 
-    public Criteria getCri() {
+    public PageCriteria getCri() {
         return cri;
     }
 
@@ -67,13 +70,26 @@ public class PageMaker {
     }
     
     public String makeSearch(int page){        
-        UriComponents uriComponents =
-                  UriComponentsBuilder.newInstance()
-                  .queryParam("page", page)
-                  .queryParam("perPageNum", cri.getPerPageNum())
-                  .queryParam("searchType", ((SearchCriteria)cri).getSearchType())
-                  .queryParam("keyword", ((SearchCriteria)cri).getKeyword())
-                  .build();       
-        return uriComponents.toUriString();
-      } 
+        if(((SearchCriteria)cri).getKeyword() != null){
+            UriComponents uriComponents =
+                    UriComponentsBuilder.newInstance()
+                    .queryParam("page", page)
+                    .queryParam("perPageNum", cri.getPerPageNum())
+                    .queryParam("searchType", ((SearchCriteria)cri).getSearchType())
+                    .queryParam("keyword", ((SearchCriteria)cri).getKeyword())
+                    .build()
+                    .encode();
+            return uriComponents.toUriString();
+        }
+        else{
+            UriComponents uriComponents =
+                    UriComponentsBuilder.newInstance()
+                    .queryParam("page", page)
+                    .queryParam("perPageNum", cri.getPerPageNum())                    
+                    .build()
+                    .encode();
+            return uriComponents.toUriString();
+        }                    
+        
+    } 
 }

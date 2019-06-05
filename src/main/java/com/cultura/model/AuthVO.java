@@ -1,4 +1,4 @@
-package com.cultura.domain;
+package com.cultura.model;
 
 public class AuthVO {
     private String userId;

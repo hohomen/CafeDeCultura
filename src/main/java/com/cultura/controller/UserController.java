@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.cultura.domain.AuthVO;
-import com.cultura.domain.UserVO;
+import com.cultura.model.AuthVO;
+import com.cultura.model.UserVO;
 import com.cultura.persistence.UserDAO;
 import com.cultura.service.UserService;
 

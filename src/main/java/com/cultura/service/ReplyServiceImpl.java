@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cultura.domain.ReplyVO;
+import com.cultura.model.ReplyVO;
 import com.cultura.persistence.BoardDAO;
 import com.cultura.persistence.ReplyDAO;
 
@@ -45,8 +45,6 @@ public class ReplyServiceImpl implements ReplyService{
         int boardId = replyDAO.getBoardId(replyId);
         replyDAO.delete(replyId);
         boardDAO.updateReplyCnt(boardId, -1);
-    }
-    
-    
+    }    
 
 }

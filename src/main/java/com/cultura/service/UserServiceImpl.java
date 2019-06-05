@@ -11,8 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cultura.domain.AuthVO;
-import com.cultura.domain.UserVO;
+import com.cultura.model.AuthVO;
+import com.cultura.model.UserVO;
 import com.cultura.persistence.UserDAO;
 
 @Service

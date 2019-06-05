@@ -2,7 +2,7 @@ package com.cultura.service;
 
 import java.util.List;
 
-import com.cultura.domain.ReplyVO;
+import com.cultura.model.ReplyVO;
 
 public interface ReplyService {
     

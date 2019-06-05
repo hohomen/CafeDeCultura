@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.cultura.aop.LogAdvice;
-import com.cultura.domain.UserVO;
+import com.cultura.model.UserVO;
 
 
 
@@ -24,8 +24,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {	    
 	    
-		logger.warn("Load User By UserName : " + userName);		
-		UserVO vo = session.selectOne(namespace+".read", userName);
+		logger.warn("Load User By UserName : " + userName);
+		UserVO vo = session.selectOne(namespace+".readUserAuth", userName);
 		logger.warn("queried by member mapper: " + vo);
 		return vo == null ? null : new CustomUser(vo);
 	} 

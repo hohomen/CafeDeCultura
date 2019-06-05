@@ -1,7 +1,7 @@
 package com.cultura.service;
 
-import com.cultura.domain.AuthVO;
-import com.cultura.domain.UserVO;
+import com.cultura.model.AuthVO;
+import com.cultura.model.UserVO;
 
 public interface UserService {
     public void createIdentification(UserVO user, AuthVO auth) throws Exception;
