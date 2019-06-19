@@ -12,7 +12,14 @@ public class ReplyVO {
     private String reParent;
     private String reDepth;
     private Integer reOrder;
+    private String image;
         
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
     public String getReParent() {
         return reParent;
     }

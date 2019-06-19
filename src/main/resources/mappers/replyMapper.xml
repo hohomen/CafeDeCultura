@@ -6,21 +6,39 @@
   
     <mapper namespace="com.cultura.mapper.ReplyMapper">
     
-    <select id="list" resultType = "com.cultura.domain.ReplyVO">
-        SELECT replyId, replyText, replyer, R.regDate, nickname
-        FROM REPLY_TB R, USER_TB U 
-        WHERE boardId = #{boardId} AND R.replyer = U.userId 
-        ORDER BY replyId DESC    
+    <select id="list" resultType = "com.cultura.model.ReplyVO">
+        SELECT replyId, replyText, replyer, R.regDate, reParent, reDepth, reOrder, nickname, image
+        FROM reply_tb R, user_tb U 
+        WHERE boardId = #{boardId} AND R.replyer = U.userId
+        order by reOrder
     </select>
     
     <insert id="create">
+        <selectKey resultType="int" keyProperty="replyId" order="BEFORE">
+            SELECT IFNULL(MAX(replyId),0)+1 FROM reply_tb
+        </selectKey>
         INSERT INTO REPLY_TB (boardId, REPLYTEXT, REPLYER)
-        VALUES (#{boardId}, #{replytext}, #{replyer})
+        VALUES (#{boardId}, #{replyText}, #{replyer})
     </insert>
+    
+    <insert id="insertReply">
+        <selectKey resultType="int" keyProperty="replyId" order="BEFORE">
+            SELECT IFNULL(MAX(replyId),0)+1 FROM reply_tb
+        </selectKey>
+    
+        INSERT INTO reply_tb(boardId, replyId, replyer, replyText,  REORDER, REPARENT, REDEPTH)
+        VALUES (#{boardId}, #{replyId}, #{replyer}, #{replyText}, #{reOrder},
+                   <choose>
+                       <when test="reParent==null">#{replyId}, 0</when>
+                       <otherwise>#{reParent}, #{reDepth}</otherwise>
+                   </choose>
+               )
+    </insert>
+    
     
     <update id="update">
         UPDATE REPLY_TB 
-        SET REPLYTEXT = #{replytext},
+        SET REPLYTEXT = #{replyText},
             regDATE = now()
         WHERE replyId = #{replyId}    
     </update>
@@ -35,5 +53,24 @@
         FROM REPLY_TB 
         WHERE replyId = #{replyId}
     </select>    
+    
+    <select id="selectReplyParent" resultType="com.cultura.model.ReplyVO">
+        SELECT boardId, REDEPTH+1 REDEPTH
+             , IFNULL((SELECT MAX(REORDER) FROM reply_tb WHERE REPARENT=TB.ReplyId), TB.REORDER) REORDER 
+          FROM reply_tb tb
+         WHERE replyId=#{reParent}
+    </select>
+    
+    <select id="selectBoardReplyMaxOrder" resultType="Integer">
+        SELECT IFNULL(MAX(REORDER),0)+1
+          FROM reply_tb
+         WHERE boardId=#{boardId}
+    </select>
+    
+   <update id="updateReplyOrder" > 
+        UPDATE reply_tb
+           SET REORDER = REORDER + 1 
+         WHERE boardId=#{boardId} AND REORDER>#{reOrder}       
+    </update>
     
 </mapper>

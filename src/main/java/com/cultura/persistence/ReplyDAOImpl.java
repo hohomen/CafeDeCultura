@@ -40,6 +40,30 @@ public class ReplyDAOImpl implements ReplyDAO{
     @Override
     public int getBoardId(Integer replyId) throws Exception {
         return session.selectOne(namespace + ".getBoardId", replyId);
-    }   
+    }
+
+    @Override
+    public ReplyVO getReplyParent(String reParent) throws Exception {
+        return session.selectOne(namespace + ".selectReplyParent", reParent);
+    }
+
+    @Override
+    public Integer getBoardReplyMaxOrder(Integer boardId) throws Exception {
+        return session.selectOne(namespace + ".selectBoardReplyMaxOrder", boardId);
+    }
+
+    @Override
+    public void setReplyOrder(ReplyVO replyVO) throws Exception {
+        session.update(namespace + ".updateReplyOrder", replyVO);        
+    }
+
+    @Override
+    public void createReply(ReplyVO vo) throws Exception {
+        session.insert(namespace + ".insertReply", vo);        
+    }
+    
+    
+    
+    
     
 }
