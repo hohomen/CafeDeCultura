@@ -1,12 +1,11 @@
 package com.cultura.model;
 
-import java.util.Date;
 
 public class ReplyVO {
     private Integer replyId;    
     private String replyText;
     private String replyer;
-    private Date regDate;
+    private String regDate;
     private Integer boardId;
     private String nickname;
     private String reParent;
@@ -56,10 +55,10 @@ public class ReplyVO {
     public void setBoardId(Integer boardId) {
         this.boardId = boardId;
     }
-    public Date getRegDate() {
+    public String getRegDate() {
         return regDate;
     }
-    public void setRegDate(Date regDate) {
+    public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
     public String getReplyText() {

@@ -7,8 +7,8 @@ import com.cultura.model.ReplyVO;
 public interface ReplyService {
     
     public List<ReplyVO> getList(Integer board_id) throws Exception;    
-    public void update(ReplyVO vo) throws Exception;        
-    public void delete(Integer reply_id) throws Exception;
+    public void updateReply(ReplyVO vo) throws Exception;        
+    public void deleteReply(ReplyVO vo) throws Exception;
     public void registerReply(ReplyVO vo) throws Exception;
 
 }

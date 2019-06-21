@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,58 +23,35 @@ public class ReplyController {
     private ReplyService service;    
     
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity<String> register(@RequestBody ReplyVO vo) {
-      ResponseEntity<String> entity = null;
-      try {
+    public ResponseEntity<String> register(@RequestBody ReplyVO vo) throws Exception {
+        ResponseEntity<String> entity = null;      
         service.registerReply(vo);
-        entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-      } catch (Exception e) {
-        e.printStackTrace();
-        entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-      }
-      return entity;
+        entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);      
+        return entity;
     }
     
     @RequestMapping(value = "/all/{boardId}", method = RequestMethod.GET)
-    public ResponseEntity<List<ReplyVO>> list(@PathVariable("boardId") Integer boardId) {
-      ResponseEntity<List<ReplyVO>> entity = null;
-      try {
-        entity = new ResponseEntity<>(service.getList(boardId), HttpStatus.OK);
-
-      } catch (Exception e) {
-        e.printStackTrace();
-        entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-      }
-      return entity;
+    public ResponseEntity<List<ReplyVO>> list(@PathVariable("boardId") Integer boardId) throws Exception {
+        ResponseEntity<List<ReplyVO>> entity = null;      
+        entity = new ResponseEntity<>(service.getList(boardId), HttpStatus.OK);      
+        return entity;
     }
     
     @RequestMapping(value = "/{replyId}", method = { RequestMethod.PUT, RequestMethod.PATCH })
-    public ResponseEntity<String> update(@PathVariable("replyId") Integer replyId, @RequestBody ReplyVO vo) {
-
-      ResponseEntity<String> entity = null;
-      try {
+    public ResponseEntity<String> update(@PathVariable("replyId") Integer replyId, @RequestBody ReplyVO vo) throws Exception {
+        ResponseEntity<String> entity = null;     
         vo.setReplyId(replyId);
-        service.update(vo);
-
-        entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-      } catch (Exception e) {
-        e.printStackTrace();
-        entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-      }
-      return entity;
+        service.updateReply(vo);
+        entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);      
+        return entity;
     }
     
-    @RequestMapping(value = "/{replyId}", method = RequestMethod.DELETE)
-    public ResponseEntity<String> remove(@PathVariable("replyId") Integer replyId) {
-
-      ResponseEntity<String> entity = null;
-      try {
-        service.delete(replyId);
+    @RequestMapping(value = "/delete/{replyId}", method = RequestMethod.PUT)
+    public ResponseEntity<String> remove(@PathVariable("replyId") Integer replyId, @RequestBody ReplyVO vo) throws Exception {
+        ResponseEntity<String> entity = null;
+        vo.setReplyId(replyId);
+        service.deleteReply(vo);
         entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-      } catch (Exception e) {
-        e.printStackTrace();
-        entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-      }
-      return entity;
+        return entity;
     }
 }

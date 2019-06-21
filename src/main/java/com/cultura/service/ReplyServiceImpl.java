@@ -27,16 +27,16 @@ public class ReplyServiceImpl implements ReplyService{
     }
 
     @Override
-    public void update(ReplyVO vo) throws Exception {
+    public void updateReply(ReplyVO vo) throws Exception {
         replyDAO.update(vo);
     }
     
     @Transactional
     @Override
-    public void delete(Integer replyId) throws Exception {
-        int boardId = replyDAO.getBoardId(replyId);
-        replyDAO.delete(replyId);
+    public void deleteReply(ReplyVO vo) throws Exception {
+        int boardId = replyDAO.getBoardId(vo.getReplyId());
         boardDAO.updateReplyCnt(boardId, -1);
+        replyDAO.delete(vo);        
     }
     
     @Transactional

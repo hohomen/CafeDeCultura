@@ -8,7 +8,7 @@ public interface ReplyDAO {
     public List<ReplyVO> list(Integer board_id) throws Exception;
     public void create(ReplyVO vo) throws Exception;
     public void update(ReplyVO vo) throws Exception;
-    public void delete(Integer reply_id) throws Exception;
+    public void delete(ReplyVO vo) throws Exception;
     public int getBoardId(Integer replyId) throws Exception;
     public ReplyVO getReplyParent(String reParent) throws Exception;
     public Integer getBoardReplyMaxOrder(Integer boardId) throws Exception;

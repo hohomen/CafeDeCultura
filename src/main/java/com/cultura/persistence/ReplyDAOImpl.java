@@ -33,8 +33,8 @@ public class ReplyDAOImpl implements ReplyDAO{
     }
 
     @Override
-    public void delete(Integer replyId) throws Exception {
-    session.update(namespace + ".delete", replyId);        
+    public void delete(ReplyVO vo) throws Exception {
+    session.update(namespace + ".delete", vo);        
     }
 
     @Override

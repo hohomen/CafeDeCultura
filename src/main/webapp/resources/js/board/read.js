@@ -64,6 +64,17 @@ const authReplyTemplate = (comments) => {
          </div>` 
     return str;
 }
+const deletedReplyTemplate = (comments) => {
+    let str = 
+        `<div class="card" id="${comments.replyId}" >       
+             <div class="row depth${comments.reDepth}">                    
+                 <div class="contentBox">
+                     <pre>${comments.replyText}</pre>
+                 </div>
+             </div>            
+         </div>`
+    return str;
+}
     
 const replyAddTemplate = () => {
     const str =
@@ -92,12 +103,21 @@ function getReplyList(){
         $(data).each((index,item)=>{
             if(item.replyer == replyer)
                 str += authReplyTemplate(item);
+            else if(item.replyer == "none"){
+                str += deletedReplyTemplate(item);
+            }                
             else
                 str += noneAuthReplyTemplate(item);
         })          
         $('#replies').html(str);
     })
 }
+
+$("#needToLogin").on("click", function(){   
+   if(confirm("로그인 하시겠습니까?")){
+       location.href="/user/loginForm";
+   } 
+});
 
 //일반 댓글 작성
 $("#replyAddBtn").on("click", function() {        
@@ -128,10 +148,13 @@ $("#replyAddBtn").on("click", function() {
     });
 });
  
+
 //대댓글 버튼 클릭시
 $("#replies").on("click", "#addReReply", function(){
      if(replyer == ""){
-         alert("로그인 후 이용해 주세요!");
+         if(confirm("로그인 하시겠습니까?")){
+             location.href="/user/loginForm";
+         }
          return;
      }
      if(status){
@@ -142,7 +165,7 @@ $("#replies").on("click", "#addReReply", function(){
      }             
      $(this).parent().parent().after(replyAddTemplate());
      reParent = $(this).prev().attr("id");
-     $(this).text("답글 취소").css("color", "red").attr("id", "reReplyAddCancel");        
+     $(this).text("답글 취소").css("color", "red").attr("id", "reReplyAddCancel");
  });
  
  //대댓글 취소
@@ -208,9 +231,7 @@ $("#replies").on("click", "#addReReply", function(){
  //댓글 수정
  $("#replies").on("click", '#ReplyModButton', function(){
      var replyId = $(this).parent().parent().attr("id");
-     var replyText = $(this).prev().val();
-     alert(replyId);
-     alert(replyText);     
+     var replyText = $(this).prev().val();          
      $.ajax({
            type:'put',
            url:'/replies/'+replyId,
@@ -224,7 +245,7 @@ $("#replies").on("click", "#addReReply", function(){
            success:function(result){
                console.log("result: " + result);
                if(result == 'SUCCESS'){
-                   alert("수정 되었습니다.");
+                   getReplyList();
                }
            }
        });
@@ -232,21 +253,25 @@ $("#replies").on("click", "#addReReply", function(){
 
  // 댓글 삭제
  $("#replies").on("click", '#replyDelete', function(){
- 	var replyId = $(this).parent().parent().parent().parent().attr("id");
- 	alert(replyId);
+    let replyId = $(this).parent().parent().parent().attr("id");
+ 	let replyer = "none";
+ 	let replyText = "  삭제된 댓글입니다.";
  	$.ajax({
-         type : 'delete',
-         url : '/replies/' + replyId,
+         type : 'put',
+         url : '/replies/delete/' + replyId,
          headers : {
              "Content-Type" : "application/json",
-             "X-HTTP-Method-Override" : "DELETE"
+             "X-HTTP-Method-Override" : "PUT"
          },
+         data:JSON.stringify({             
+             replyer : replyer,
+             replyText : replyText
+         }),
          dataType : 'text',
          success : function(result) {
              console.log("result: " + result);
-             if (result == 'SUCCESS') {
-                 alert("삭제 되었습니다.");
-                 $("#"+replyId).remove();                    
+             if (result == 'SUCCESS') {                 
+                 getReplyList();                   
              }
          }
      });

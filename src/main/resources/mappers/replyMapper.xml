@@ -7,27 +7,29 @@
     <mapper namespace="com.cultura.mapper.ReplyMapper">
     
     <select id="list" resultType = "com.cultura.model.ReplyVO">
-        SELECT replyId, replyText, replyer, R.regDate, reParent, reDepth, reOrder, nickname, image
+      SELECT replyId, replyText, replyer, DATE_FORMAT(R.regDate,'%Y-%m-%d %H:%i') as regDate, reParent, reDepth, reOrder, nickname, image
         FROM reply_tb R, user_tb U 
-        WHERE boardId = #{boardId} AND R.replyer = U.userId
-        order by reOrder
+       WHERE boardId = #{boardId} AND R.replyer = U.userId
+             order by reOrder
     </select>
     
-    <insert id="create">
+    <insert id="create">    
         <selectKey resultType="int" keyProperty="replyId" order="BEFORE">
-            SELECT IFNULL(MAX(replyId),0)+1 FROM reply_tb
+          SELECT IFNULL(MAX(replyId),0)+1 
+            FROM reply_tb
         </selectKey>
-        INSERT INTO REPLY_TB (boardId, REPLYTEXT, REPLYER)
-        VALUES (#{boardId}, #{replyText}, #{replyer})
+     INSERT INTO reply_tb (replyId, boardid, replytext, replyer)
+          VALUES (#{replyId}, #{boardId}, #{replyText}, #{replyer})
     </insert>
     
     <insert id="insertReply">
         <selectKey resultType="int" keyProperty="replyId" order="BEFORE">
-            SELECT IFNULL(MAX(replyId),0)+1 FROM reply_tb
+         SELECT IFNULL(MAX(replyId),0)+1 
+           FROM reply_tb
         </selectKey>
     
-        INSERT INTO reply_tb(boardId, replyId, replyer, replyText,  REORDER, REPARENT, REDEPTH)
-        VALUES (#{boardId}, #{replyId}, #{replyer}, #{replyText}, #{reOrder},
+    INSERT INTO reply_tb(boardId, replyId, replyer, replyText,  REORDER, REPARENT, REDEPTH)
+         VALUES (#{boardId}, #{replyId}, #{replyer}, #{replyText}, #{reOrder},
                    <choose>
                        <when test="reParent==null">#{replyId}, 0</when>
                        <otherwise>#{reParent}, #{reDepth}</otherwise>
@@ -37,21 +39,21 @@
     
     
     <update id="update">
-        UPDATE REPLY_TB 
-        SET REPLYTEXT = #{replyText},
-            regDATE = now()
-        WHERE replyId = #{replyId}    
+     UPDATE REPLY_TB 
+        SET REPLYTEXT = #{replyText}, regDATE = now()
+      WHERE replyId = #{replyId}
     </update>
     
     <delete id="delete">
-        DELETE FROM REPLY_TB 
-        WHERE replyId = #{replyId}
+     UPDATE reply_tb 
+        SET replytext = #{replyText}, replyer = #{replyer}, regDate = now()
+      WHERE replyId = #{replyId}
     </delete>
     
     <select id="getBoardId" resultType="int">
-        SELECT boardId 
-        FROM REPLY_TB 
-        WHERE replyId = #{replyId}
+      SELECT boardId 
+        FROM reply_tb 
+       WHERE replyId = #{replyId}
     </select>    
     
     <select id="selectReplyParent" resultType="com.cultura.model.ReplyVO">
