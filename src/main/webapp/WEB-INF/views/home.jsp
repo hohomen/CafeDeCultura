@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="./template/header.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<link href="https://fonts.googleapis.com/css?family=Gaegu&display=swap" rel="stylesheet">
 <!-- Header with Background Image -->
 <header class="business-header">
 	<div class="container">
@@ -13,40 +11,39 @@
 	</div>
 </header>
 
+
 <!-- Header with phrase and search bar -->
-<div class='row ' style="padding-bottom: 1%; padding-top: 3%;">
-	<div class="col-md-12 header2" style="text-align: center; padding: 10px;">
-		<h2 style="color: c0392b;">
-			<strong class="mainfont">문화인을 위한 공간</strong>
-		</h2>
-	</div>	
-</div>
+
 
 <div class="container col-md-10 vertical-center" >
+    <div class='row header2'>    
+        <h3 style="color: c0392b;">
+            <strong class="mainfont">문화인을 위한 공간</strong>
+        </h3>      
+</div>
+
     <div class=row>
-        <div class="form-group col-md-4">
-            <a href='/board/register'>
-                <button type="submit" class="btn btn-coffee">글쓰기</button>
+        <div class="form-group col-md-6">
+            <a href='/board/write'>
+                <img src = "/resources/image/write.png" >
             </a>
         </div>
-        <div class="col-md-8">
-            <form class="form-inline pull-right">
-                <select name="searchType" class="browser-default custom-select">                    
-                    <option value="t"
-                        <c:out value="${cri.searchType eq 't'? 'selected':''}"/>>제목</option>
-                    <option value="c"
-                        <c:out value="${cri.searchType eq 'c'? 'selected':''}"/>>내용</option>
-                    <option value="w"
-                        <c:out value="${cri.searchType eq 'w'? 'selected':''}"/>>닉네임</option>
-                    <option value="tc"
-                        <c:out value="${cri.searchType eq 'tc'? 'selected':''}"/>>제목+내용</option>
+        <div class="col-md-6">
+            <form>
+            <div class="input-group">
+                <select name="searchType" class="custom-form-control">                    
+                    <option value="title"
+                        <c:out value="${cri.searchType eq 'title'? 'selected':''}"/>>제목</option>
+                    <option value="contents"
+                        <c:out value="${cri.searchType eq 'contents'? 'selected':''}"/>>내용</option>
+                    <option value="nickname"
+                        <c:out value="${cri.searchType eq 'nickname'? 'selected':''}"/>>닉네임</option>
+                    <option value="TC"
+                        <c:out value="${cri.searchType eq 'TC'? 'selected':''}"/>>제목+내용</option>
                 </select>
-                <div class="form-group">
-                    <input type="text" name="keyword" class="form-control" id='keywordInput' value='${cri.keyword }' placeholder="검색어를 임력해 주세요.">
-                </div>
-                <div class="form-group">
-                    <button type="submit" id='searchBtn' class="btn btn-default">찾기</button>
-                </div>
+                <input type="text" name="keyword" id='keywordInput' value='${cri.keyword }' placeholder="검색어를 입력해 주세요." class="form-control">
+                <button type="submit" id='searchBtn' class="btn btn-default input-group-addon">찾기</button>
+             </div>
              </form>
         </div>
     </div>
@@ -85,8 +82,7 @@
                 </c:if>
 
                 <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-                    <li class="page-item ml-2 "
-                        <c:out value="${pageMaker.cri.page == idx?'class = active':''}"/>>
+                    <li class="page-item ml-2 <c:out value="${pageMaker.cri.page == idx?'active':''}"/>">
                         <a href="${pageMaker.makeSearch(idx)}" class="page-link">${idx}</a>
                     </li>
                 </c:forEach>
@@ -99,6 +95,9 @@
                 </c:if>
             </ul>
         </div>
+        <a href='/board/write'>
+                <img src="/resources/image/write_small.png" >
+        </a>
     </div>    
 </div>
 <%@ include file="./template/footer.jsp"%>
