@@ -45,32 +45,20 @@ public class UserController {
     @RequestMapping(value = "/checkId/{userId}", method = RequestMethod.POST)
     public ResponseEntity<Integer> checkId(@PathVariable("userId") String userId) throws Exception {
         ResponseEntity<Integer> entity = null;
-        try {
-            if(dao.readId(userId) != null)
-                entity = new ResponseEntity<>(1, HttpStatus.OK);
-            else
-                entity = new ResponseEntity<>(0, HttpStatus.OK);
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        if(dao.readId(userId) != null)
+            entity = new ResponseEntity<>(1, HttpStatus.OK);
+        else
+            entity = new ResponseEntity<>(0, HttpStatus.OK);
         return entity;
     }
     
     @RequestMapping(value = "/checkNickname/{nickname}", method = RequestMethod.POST)
     public ResponseEntity<Integer> checkNickname(@PathVariable("nickname") String nickname) throws Exception {            
-        ResponseEntity<Integer> entity = null;
-        try {
-            if(dao.readNickname(nickname) != null)
-                entity = new ResponseEntity<>(1, HttpStatus.OK);
-            else
-                entity = new ResponseEntity<>(0, HttpStatus.OK);
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        ResponseEntity<Integer> entity = null;        
+        if(dao.readNickname(nickname) != null)
+            entity = new ResponseEntity<>(1, HttpStatus.OK);
+        else
+            entity = new ResponseEntity<>(0, HttpStatus.OK);
         return entity;
     }
     
@@ -78,7 +66,7 @@ public class UserController {
     private UserService service;
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registPOST(UserVO user, AuthVO auth, RedirectAttributes rttr) throws Exception {             
-        service.createIdentification(user, auth);
+        service.createID(user, auth);
         return "redirect:/home";
     }
     
@@ -88,15 +76,10 @@ public class UserController {
     }
     
     @RequestMapping(value = "/modify/{userId}", method = { RequestMethod.PUT, RequestMethod.PATCH })
-    public ResponseEntity<String> modifyUserInfo(@PathVariable("userId") String userId, @RequestBody UserVO user) {
+    public ResponseEntity<String> modifyUserInfo(@PathVariable("userId") String userId, @RequestBody UserVO user) throws Exception {
         ResponseEntity<String> entity = null;
-        try {
-          service.modifyUserInfo(user);
-          entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-        } catch (Exception e) {
-          e.printStackTrace();
-          entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+        service.modifyUserInfo(user);
+        entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
         return entity;
     }
     

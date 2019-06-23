@@ -24,10 +24,13 @@ public class UserServiceImpl implements UserService {
     
     @Transactional
     @Override
-    public void createIdentification(UserVO user, AuthVO auth) throws Exception {
-        String encodePass = passwordEncoder.encode(user.getUserPw());
-        user.setUserPw(encodePass);
+    public void createID(UserVO user, AuthVO auth) throws Exception {                
+        if(user.getImage().equals("")){
+            user.setImage("/defaultProfile.jpg");
+        }
+        user.setUserPw(passwordEncoder.encode(user.getUserPw()));        
         dao.createUser(user);
+        
         auth.setAuth("USER");
         dao.createAuth(auth);  
     }
@@ -62,6 +65,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserVO getUserInfo(String userId) throws Exception {
         return dao.readUser(userId);
+    }
+
+    @Override
+    public void deleteImage(String userId) throws Exception {
+        dao.deleteImage(userId);
+        if(!userId.equals("none")){
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            SecurityContextHolder.getContext().setAuthentication(createNewAuthentication(authentication,userId));            
+        }        
     }
     
 }

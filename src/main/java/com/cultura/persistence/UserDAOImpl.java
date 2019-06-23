@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.cultura.model.AuthVO;
+import com.cultura.model.SearchCriteria;
 import com.cultura.model.UserVO;
 
 @Repository
@@ -42,6 +43,16 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public UserVO readUser(String id) throws Exception {
         return session.selectOne(namespace+".readUserInfo", id);
+    }
+
+    @Override
+    public String selectUserId(String keyword) throws Exception {
+        return session.selectOne(namespace+".selectUserId", keyword);
+    }
+
+    @Override
+    public void deleteImage(String userId) throws Exception {        
+        session.update(namespace+".deleteImage", userId);
     }
     
 }

@@ -10,12 +10,12 @@
         <p style="color:red; text-align:center;" >        
             <c:out value="아이디와 비밀번호를 확인해 주세요."/>.        
         </p>
-    </c:if>            
+    </c:if>
 <div class="col-xd-4" align="center">
     <div class="col-md-3">
-        <form action="/login" method="post">            
+        <form action="/login" method="post">
             <div class="form-group text-dark" align="left">
-                <strong><label for="j_username">이메일 or 아이디</label></strong> <input
+                <strong><label for="j_username">아이디</label></strong> <input
                     name="j_username" value='' id="j_username"
                     placeholder="E-mail or Username" type="text" class="form-control" />
             </div>

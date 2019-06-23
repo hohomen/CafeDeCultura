@@ -11,8 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.cultura.domain.AuthVO;
-import com.cultura.domain.UserVO;
+import com.cultura.model.AuthVO;
+import com.cultura.model.UserVO;
 import com.cultura.persistence.UserDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)

@@ -1,6 +1,7 @@
 package com.cultura.persistence;
 
 import com.cultura.model.AuthVO;
+import com.cultura.model.SearchCriteria;
 import com.cultura.model.UserVO;
 
 public interface UserDAO {
@@ -10,5 +11,7 @@ public interface UserDAO {
     public void createAuth(AuthVO auth) throws Exception;
     public void updateUser(UserVO user) throws Exception;
     public UserVO readUser(String id)throws Exception;
+    public String selectUserId(String keyword)throws Exception;
+    public void deleteImage(String userId)throws Exception;
 }
 

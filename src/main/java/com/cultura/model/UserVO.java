@@ -90,12 +90,12 @@ public class UserVO {
     public void setAuthList(List<AuthVO> authList) {
         this.authList = authList;
     }
+    
     @Override
     public String toString() {
         return "UserVO [userId=" + userId + ", userPw=" + userPw + ", nickname=" + nickname + ", email=" + email
-                + ", regDate=" + regDate + ", updateDate=" + updateDate + ", enabled=" + enabled + ", authList="
-                + authList + "]";
+                + ", regDate=" + regDate + ", updateDate=" + updateDate + ", enabled=" + enabled + ", blog=" + blog
+                + ", birth=" + birth + ", address=" + address + ", image=" + image + ", authList=" + authList + "]";
     }
-    
     
 }
