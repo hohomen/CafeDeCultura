@@ -42,35 +42,14 @@
             <textarea id="summernote" class="form-control border-coffee" 
                       placeholder="내용을 입력하세요" name="content" required>${boardVO.content}</textarea>            
         </div>
+        <div class="form-group">       
+            <input class="btn btn-coffee pull-right" type="reset" value="다시 쓰기">
+            <button id ="modifyWriteBtn" class="btn btn-coffee">수정</button>
+            <button id ="modifyCancelBtn" class="btn btn-brown">취소</button>                 
+        </div>
     </form>
-        
-    <div class="form-group">       
-        <input class="btn btn-coffee pull-right" type="button" onClick="Reset()" value="다시 쓰기">
-        <button id ="modifyWriteBtn" class="btn btn-coffee">수정</button>
-        <button id ="modifyCancelBtn" class="btn btn-brown">취소</button>                 
-    </div>    
 </div>
 
-<script>
-    //다시 작성
-    function Reset() {
-                write_form.title.value = "";
-                write_form.content.value = "";
-    }
-    
-    //수정, 취소
-    $(document).ready(function() {
-        var formObj = $("form[role='form']");
-        console.log(formObj);                
-        $("#modifyCancelBtn").on("click", function(){
-            self.location = "/board/read?page=${cri.page}&perPageNum=${cri.perPageNum}"
-                            +"&searchType=${cri.searchType}&keyword=${cri.keyword}"
-                            +"&boardId=+${boardVO.boardId}";
-        });
-        $("#modifyWriteBtn").on("click", function(){
-            formObj.submit();
-        });
-    });
-</script>
+<script src="/resources/js/board/modify.js"></script>
 <script src="/resources/js/board/wrtie.js"></script>
 <%@ include file="../template/footer.jsp"%>

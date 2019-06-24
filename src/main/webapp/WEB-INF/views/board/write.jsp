@@ -12,8 +12,7 @@
 </div>
 
 <!-- 작성 form -->
-<div class="row container card form-group border-coffee"
-	style="padding: 1%; margin: 2%">
+<div class="container col-md-10 card form-group border-coffee" >
 	<form name='write_form' method='post' style="margin-top: 1%; margin: 2%">	
 	    <input type="hidden" name="userId" value="<sec:authentication property="principal.user.userId"/>" />	
 		<div class="form-check-inline form-group ">
@@ -40,7 +39,7 @@
 		</div>
 		<div class="form-group">
 			<input class="btn btn-brown" type="submit" value="작성"> &nbsp;
-			<input class="btn btn-coffee" type="button" onClick="Reset()" value="다시 쓰기">
+			<input class="btn btn-coffee" type="reset" value="다시 쓰기">
 		</div>
 	</form>
 </div>

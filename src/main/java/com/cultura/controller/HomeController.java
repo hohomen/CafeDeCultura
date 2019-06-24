@@ -21,20 +21,23 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-		model.addAttribute("list", service.listSearchCriteria(cri));
+	    model.addAttribute("list", service.listSearchCriteria(cri));
+	    
         PageMaker pageMaker = new PageMaker();
-        pageMaker.setCri(cri);
-        pageMaker.setTotalCount(service.listSearchCount(cri));
-        model.addAttribute("pageMaker", pageMaker);		
+        pageMaker.setCri(cri);        
+        pageMaker.setTotalCount(service.listSearchCount(cri));        
+        model.addAttribute("pageMaker", pageMaker);
+        
 		return "home";
 	}
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
     public String listAll(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-        model.addAttribute("list", service.listSearchCriteria(cri));        
+	    model.addAttribute("list", service.listSearchCriteria(cri));
+	    
         PageMaker pageMaker = new PageMaker();
-        pageMaker.setCri(cri);
-        pageMaker.setTotalCount(service.listSearchCount(cri));
+        pageMaker.setCri(cri);        
+        pageMaker.setTotalCount(service.listSearchCount(cri));        
         model.addAttribute("pageMaker", pageMaker);
         return "home";
     }

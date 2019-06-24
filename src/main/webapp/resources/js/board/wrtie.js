@@ -1,8 +1,4 @@
-    function Reset() {
-        write_form.title.value = "";
-        write_form.d_content.value = "";
-    }
-    
+        
     function sendImage(file, el) {
         var form_data = new FormData();
         form_data.append('file', file);
@@ -17,7 +13,7 @@
             success: function(img_name) {
             	var image = $('<img>').attr({
                     src : "/file/displayFile?fileName="+img_name+"&pathType=boardImage",
-                    data_src : img_name
+                    data_src : img_name                    
                 });
                 $('#summernote').summernote("insertNode", image[0]);
             }
@@ -40,8 +36,7 @@
     
     $(document).ready(function() {
         $('#summernote').summernote({
-              placeholder: '',
-              tabsize: 200,
+              placeholder: '',              
               height: 400,
               callbacks: {
             	  onImageUpload: function(files, editor, welEditable) {
