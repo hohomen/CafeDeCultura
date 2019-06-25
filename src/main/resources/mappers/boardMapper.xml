@@ -38,16 +38,16 @@
     
     <sql id="search">
 	    <if test="searchType != null" > 
-	        <if test="searchType == 't'.toString()">
+	        <if test="searchType == 'title'.toString()">
 	          and title like CONCAT('%', #{keyword}, '%')
 	        </if>
-	        <if test="searchType == 'c'.toString()">
+	        <if test="searchType == 'contents'.toString()">
 	          and content like CONCAT('%', #{keyword}, '%')
 	        </if>
-	        <if test="searchType == 'w'.toString()">
-	          and writer like CONCAT('%', #{keyword}, '%')
+	        <if test="searchType == 'nickname'.toString()">
+	          and userId like CONCAT('%', #{keyword}, '%')
 	        </if>     
-	        <if test="searchType == 'tc'.toString()">
+	        <if test="searchType == 'TC'.toString()">
 	          and ( title like CONCAT('%', #{keyword}, '%') OR content like CONCAT('%', #{keyword}, '%'))
 	        </if>	                 
 	    </if>  
@@ -80,6 +80,6 @@
        UPDATE BOARD_TB 
        SET VIEWCNT = VIEWCNT + 1 
        WHERE boardId = #{boardId}
-    </update>  
+    </update>
     
 </mapper>

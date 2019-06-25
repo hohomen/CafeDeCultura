@@ -55,7 +55,7 @@ public class BoardDAOImpl implements BoardDAO {
         paramMap.put("boardId", boardId);
         paramMap.put("amount", amount);
         
-        session.update(namespace + ".updateReplyCnt", paramMap);        
+        session.update(namespace + ".updateReplyCnt", paramMap);
     }
 
     @Override

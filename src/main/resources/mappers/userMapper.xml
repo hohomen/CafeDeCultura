@@ -27,22 +27,28 @@
       </resultMap>
       
       <select id="readUserAuth" resultMap="userMap">
-          SELECT mem.userId,  userPw, nickname, email, enabled, regDate, updatedate, blog, birth, address, image, auth
+        SELECT mem.userId,  userPw, nickname, email, enabled, regDate, updatedate, blog, birth, address, image, auth
           FROM user_tb mem LEFT OUTER JOIN user_auth_tb auth on mem.userId = auth.userId 
-          WHERE mem.userId = #{userId} 
+         WHERE mem.userId = #{userId} 
       </select>
       
       <select id="readId" resultType="UserVO">
-          SELECT userId
+        SELECT userId
           FROM user_tb 
-          WHERE userId = #{userId} 
+         WHERE userId = #{userId} 
       </select>
       
       <select id="readNickname" resultType="UserVO">
-          SELECT nickname
+        SELECT nickname
           FROM user_tb 
-          WHERE nickname = #{nickname} 
+         WHERE nickname = #{nickname} 
       </select>
+      
+      <select id="selectUserId" resultType="String">
+        SELECT userId
+          FROM user_tb
+         WHERE nickname = #{keyword}
+    </select>
       
       <insert id="createUser">
      INSERT INTO user_tb(userid, userpw, nickname, email, blog, birth, address, image)
@@ -66,5 +72,11 @@
             FROM user_tb 
            WHERE userId = #{userId} 
       </select>
+      
+      <update id="deleteImage">
+         UPDATE user_tb
+            SET image = '/defaultProfile.jpg'
+          WHERE userId = #{userId}
+      </update>
     
-  </mapper>
+   </mapper>
