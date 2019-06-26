@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cultura.model.AuthVO;
@@ -41,27 +42,24 @@ public class UserController {
     }
 
     @Inject
-    private UserDAO dao;    
+    private UserDAO dao;
+    @ResponseBody
     @RequestMapping(value = "/checkId/{userId}", method = RequestMethod.POST)
-    public ResponseEntity<Integer> checkId(@PathVariable("userId") String userId) throws Exception {
-        ResponseEntity<Integer> entity = null;
+    public ResponseEntity<String> checkId(@PathVariable("userId") String userId) throws Exception {
+        ResponseEntity<String> entity = null;
         if(dao.readId(userId) != null)
-            entity = new ResponseEntity<>(1, HttpStatus.OK);
-        else
-            entity = new ResponseEntity<>(0, HttpStatus.OK);
+            entity = new ResponseEntity<>("Used_ID", HttpStatus.OK);        
         return entity;
     }
     
     @RequestMapping(value = "/checkNickname/{nickname}", method = RequestMethod.POST)
-    public ResponseEntity<Integer> checkNickname(@PathVariable("nickname") String nickname) throws Exception {            
-        ResponseEntity<Integer> entity = null;        
+    public ResponseEntity<String> checkNickname(@PathVariable("nickname") String nickname) throws Exception {            
+        ResponseEntity<String> entity = null;        
         if(dao.readNickname(nickname) != null)
-            entity = new ResponseEntity<>(1, HttpStatus.OK);
-        else
-            entity = new ResponseEntity<>(0, HttpStatus.OK);
+            entity = new ResponseEntity<>("Used_Nick", HttpStatus.OK);
         return entity;
     }
-    
+        
     @Inject    
     private UserService service;
     @RequestMapping(value = "/register", method = RequestMethod.POST)
