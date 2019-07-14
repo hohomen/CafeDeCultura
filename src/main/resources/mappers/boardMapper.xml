@@ -11,7 +11,7 @@
 	            TITLE
 	          , CONTENT
 	          , USERID)
-	   	  VALUE (#{title}
+	   	  VALUES (#{title}
 	   	      , #{content}
 	   	      , #{userId})
 	</insert>	
@@ -54,9 +54,9 @@
 	</sql>
  
 	<select id="listSearch" resultType="BoardVO">
-	  SELECT boardId, title, content, board_tb.regDate, viewCnt, replyCnt, userId, nickname 
-	  FROM board_tb JOIN user_tb USING(userId)
-	  WHERE boardId &gt; 0	
+	  SELECT boardId, title, content, board_tb.regDate, viewCnt, replyCnt, userId, nickname, likeCnt 
+	    FROM board_tb JOIN user_tb USING(userId)
+	   WHERE boardId &gt; 0	
 	  <include refid="search"></include>  
 
 	  ORDER BY boardId DESC
@@ -77,9 +77,31 @@
 	</update>
 	
 	<update id="updateViewCnt">
-       UPDATE BOARD_TB 
-       SET VIEWCNT = VIEWCNT + 1 
-       WHERE boardId = #{boardId}
+    UPDATE BOARD_TB 
+       SET VIEWCNT = VIEWCNT + 1
+     WHERE boardId = #{boardId}
     </update>
+    
+    <insert id="createLike">
+   INSERT INTO like_tb(userId, regDate, boardId)
+        VALUES (#{userId}, now(), #{boardId})
+    </insert>
+    
+    <update id="updateLikeCnt">
+    UPDATE board_tb
+       SET likeCnt = likeCnt + #{amount}
+     WHERE boardId = #{boardId}
+    </update>    
+    
+    <delete id="deleteLike">
+DELETE FROM like_tb
+      WHERE boardId = #{boardId} and userId = #{userId}
+    </delete>
+    
+    <select id="readlikedBoard" resultType="int">
+     SELECT count(*)
+       FROM like_tb
+      WHERE boardId = #{boardId} and userId = #{userId}
+    </select>    
     
 </mapper>

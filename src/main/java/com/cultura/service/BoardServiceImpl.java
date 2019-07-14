@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cultura.model.BoardVO;
-import com.cultura.model.SearchCriteria;
+import com.cultura.model.Criteria;
+import com.cultura.model.LikeVO;
 import com.cultura.persistence.BoardDAO;
 import com.cultura.persistence.UserDAO;
 
@@ -31,15 +33,15 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void delete(Integer boardId) throws Exception {
-        dao.delete(boardId);        
+    public void remove(Integer boardId) throws Exception {
+        dao.delete(boardId);
     }
     
     @Autowired
     private UserDAO userDao;
 
     @Override
-    public List<BoardVO> listSearchCriteria(SearchCriteria cri) throws Exception { 
+    public List<BoardVO> listSearchCriteria(Criteria cri) throws Exception { 
         if(cri.getSearchType() != null){
             // 닉네임 검색시 userId가 필요하다.
             if(cri.getSearchType().equals("nickname")){
@@ -51,7 +53,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public int listSearchCount(SearchCriteria cri) throws Exception {
+    public int listSearchCount(Criteria cri) throws Exception {
         if(cri.getSearchType() != null){
             // 닉네임 검색시 userId가 필요하다.
             if(cri.getSearchType().equals("nickname")){
@@ -61,6 +63,23 @@ public class BoardServiceImpl implements BoardService {
         }   
         return dao.listSearchCount(cri);
     }  
+    @Transactional
+    @Override
+    public void registerLike(LikeVO vo) throws Exception {
+        dao.createLike(vo);
+        dao.updateLikeCnt(vo.getBoardId(), 1);
+    }   
+    
+    @Transactional
+    @Override
+    public void removeLike(LikeVO vo) throws Exception {
+        dao.deleteLike(vo);
+        dao.updateLikeCnt(vo.getBoardId(), -1);
+    }
 
+    @Override
+    public int checkLikedBoard(LikeVO vo) throws Exception {
+        return dao.readLikedBoard(vo);
+    }
     
 }

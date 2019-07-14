@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.cultura.domain.BoardVO;
-import com.cultura.domain.Criteria;
-import com.cultura.domain.SearchCriteria;
+import com.cultura.model.BoardVO;
+import com.cultura.model.Criteria;
+import com.cultura.model.LikeVO;
 import com.cultura.persistence.BoardDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,7 +32,7 @@ public class BoardDAOTest {
     BoardVO board = new BoardVO();
     board.setTitle("안녕. ");
     board.setContent("친구들. ");
-    board.setMember_id("user00");
+    board.setUserId("user00");
     dao.create(board);
   }
 
@@ -46,7 +46,7 @@ public class BoardDAOTest {
   public void testUpdate() throws Exception {
 
     BoardVO board = new BoardVO();
-    board.setBoard_id(1);
+    board.setBoardId(1);
     board.setTitle("헬로");
     board.setContent("월드");
     dao.update(board);
@@ -61,11 +61,11 @@ public class BoardDAOTest {
   @Test @Ignore
   public void testListPage()throws Exception{
       int page =3;
-      List<BoardVO> list = dao.listPage(page);
+      /*List<BoardVO> list = dao.listPage(page);
       
       for(BoardVO boardVO : list){
-          logger.info(boardVO.getBoard_id() + ":" + boardVO.getTitle());
-      }
+          logger.info(boardVO.getBoardId() + ":" + boardVO.getTitle());
+      }*/
   }
   
   @Test @Ignore
@@ -74,17 +74,17 @@ public class BoardDAOTest {
       cri.setPage(2);
       cri.setPerPageNum(20);
       
-      List<BoardVO> list = dao.listCriteria(cri);
+      /*List<BoardVO> list = dao.listCriteria(cri);
       
       for(BoardVO boardVO : list){
-          logger.info(boardVO.getBoard_id()+":"+boardVO.getTitle());
-      }      
+          logger.info(boardVO.getBoardId()+":"+boardVO.getTitle());
+      }      */
   }
   
-  @Test
+  @Test @Ignore
   public void testDynamic1() throws Exception{
       
-      SearchCriteria cri = new SearchCriteria();
+      Criteria cri = new Criteria();
       cri.setPage(1);
       cri.setKeyword("글");
       cri.setSearchType("t");
@@ -94,13 +94,20 @@ public class BoardDAOTest {
       List<BoardVO> list = dao.listSearch(cri);
       
       for(BoardVO boardVO : list){
-          logger.info(boardVO.getBoard_id()+": "+ boardVO.getTitle());          
+          logger.info(boardVO.getBoardId()+": "+ boardVO.getTitle());          
       }
       
       logger.info("===============================");
 
       logger.info("Count: " + dao.listSearchCount(cri));
   }
-
-
+  
+  @Test
+  public void addLikeTest() throws Exception{
+      LikeVO vo = new LikeVO();
+      vo.setUserId("choi4");
+      vo.setBoardId(123);
+      dao.createLike(vo);
+      dao.updateLikeCnt(vo.getBoardId(), 1);
+  }
 }

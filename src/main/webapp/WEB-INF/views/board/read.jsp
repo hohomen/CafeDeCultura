@@ -34,12 +34,13 @@ ${boardVO.content}
 </div>
 
 <div class="container col-md-10 " style="padding-bottom: 1%; margin-bottom: 4%; margin-top: 10px;">
-    <div class="box-footer">
+    <div class="box-footer">    
         <button type="submit" id ="listPage" class="btn btn-coffee pull-right">목록으로</button>
+        <button id="likeBtn" style="margin-right : 5px;"class="pull-right btn btn-outline-danger">추천</button>        
         <sec:authorize access="isAuthenticated()">
             <c:if test="${authUserId eq boardVO.userId }">
                 <button type="submit" id ="writeModifyBtn" class="btn btn-coffee">수정</button>
-                <button type="submit" id ="writeAddBtn" class="btn btn-brown">삭제</button> 
+                <button type="submit" id ="writeAddBtn" class="btn btn-brown">삭제</button>
             </c:if>
         </sec:authorize>
     </div>

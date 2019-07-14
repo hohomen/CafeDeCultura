@@ -7,11 +7,19 @@ public class BoardVO {
 	private String title;
 	private String content;
 	private Date regDate;
-	private int viewCnt;	
-	private int replyCnt;	
+	private int viewCnt;
+	private int likeCnt;
+	private int replyCnt;
 	private String userId;
 	private String nickname;
-    	
+	
+	
+    public int getLikeCnt() {
+        return likeCnt;
+    }
+    public void setLikeCnt(int likeCnt) {
+        this.likeCnt = likeCnt;
+    }
     public String getNickname() {
         return nickname;
     }

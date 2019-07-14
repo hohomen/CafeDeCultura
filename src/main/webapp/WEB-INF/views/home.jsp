@@ -61,7 +61,8 @@
                     ${boardVO.nickname}&nbsp;
                     <small class="text-muted"> 
                         <fmt:formatDate pattern="yy.MM.dd HH:mm" value="${boardVO.regDate}" /> 
-                        &nbsp;조회수&nbsp;${boardVO.viewCnt} 
+                        &nbsp;조회수&nbsp;${boardVO.viewCnt}
+                        &nbsp;추천수&nbsp;${boardVO.likeCnt}
                     </small>
                 </td>             
                 <td style="width: 13%; text-align: center;">

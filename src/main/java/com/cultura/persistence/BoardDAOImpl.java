@@ -10,7 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.cultura.model.BoardVO;
-import com.cultura.model.SearchCriteria;
+import com.cultura.model.Criteria;
+import com.cultura.model.LikeVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -39,12 +40,12 @@ public class BoardDAOImpl implements BoardDAO {
 	}	
 
     @Override
-    public List<BoardVO> listSearch(SearchCriteria cri) throws Exception {
+    public List<BoardVO> listSearch(Criteria cri) throws Exception {
         return session.selectList(namespace+ ".listSearch", cri);
     }
 
     @Override
-    public int listSearchCount(SearchCriteria cri) throws Exception {
+    public int listSearchCount(Criteria cri) throws Exception {
         return session.selectOne(namespace+ ".listSearchCount", cri);
     }
 
@@ -62,5 +63,28 @@ public class BoardDAOImpl implements BoardDAO {
     public void updateViewCnt(Integer boardId) throws Exception {
         session.update(namespace+".updateViewCnt", boardId);        
     }
-	
+
+    @Override
+    public void createLike(LikeVO vo) throws Exception {
+        session.insert(namespace+".createLike", vo);        
+    }
+
+    @Override
+    public void updateLikeCnt(Integer boardId, int amount) throws Exception {
+        Map<String, Object> paramMap = new HashMap<String, Object>();        
+        paramMap.put("boardId", boardId);
+        paramMap.put("amount", amount);
+        
+        session.update(namespace + ".updateLikeCnt", paramMap);        
+    }
+
+    @Override
+    public void deleteLike(LikeVO vo) throws Exception {
+        session.delete(namespace+".deleteLike", vo);
+    }
+
+    @Override
+    public int readLikedBoard(LikeVO vo) throws Exception {
+        return session.selectOne(namespace+".readlikedBoard", vo);
+    }	
 }
