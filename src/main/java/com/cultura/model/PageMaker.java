@@ -1,10 +1,7 @@
-package com.cultura.util;
+package com.cultura.model;
 
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import com.cultura.model.PageCriteria;
-import com.cultura.model.SearchCriteria;
 
 public class PageMaker {
     private int totalCount;
@@ -13,9 +10,9 @@ public class PageMaker {
     private boolean prev;
     private boolean next;
     private int displayPageNum = 10;
-    private PageCriteria cri;
+    private Criteria cri;
 
-    public void setCri(PageCriteria cri) {
+    public void setCri(Criteria cri) {
         this.cri = cri;
     }
     
@@ -59,7 +56,7 @@ public class PageMaker {
         return displayPageNum;
     }
 
-    public PageCriteria getCri() {
+    public Criteria getCri() {
         return cri;
     }
 
@@ -70,13 +67,13 @@ public class PageMaker {
     }
     
     public String makeSearch(int page){        
-        if(((SearchCriteria)cri).getKeyword() != null){
+        if(cri.getKeyword() != null){
             UriComponents uriComponents =
                     UriComponentsBuilder.newInstance()
                     .queryParam("page", page)
                     .queryParam("perPageNum", cri.getPerPageNum())
-                    .queryParam("searchType", ((SearchCriteria)cri).getSearchType())
-                    .queryParam("keyword", ((SearchCriteria)cri).getKeyword())
+                    .queryParam("searchType", cri.getSearchType())
+                    .queryParam("keyword", cri.getKeyword())
                     .build()
                     .encode();
             return uriComponents.toUriString();
@@ -89,7 +86,6 @@ public class PageMaker {
                     .build()
                     .encode();
             return uriComponents.toUriString();
-        }                    
-        
+        }
     } 
 }

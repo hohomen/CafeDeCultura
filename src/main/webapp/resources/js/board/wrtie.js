@@ -5,7 +5,7 @@
         $.ajax({
             data: form_data,
             type: "POST",
-            url: '/file/boardImage',
+            url: '/board/boardImage',
             cache: false,
             contentType: false,
             enctype: 'multipart/form-data',
@@ -36,7 +36,7 @@
     
     $(document).ready(function() {
         $('#summernote').summernote({
-              placeholder: '',              
+              placeholder: '',
               height: 400,
               callbacks: {
             	  onImageUpload: function(files, editor, welEditable) {

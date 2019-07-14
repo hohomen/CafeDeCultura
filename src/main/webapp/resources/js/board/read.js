@@ -70,10 +70,6 @@ function registerLike(){
     $.ajax({
         type:'post',
         url:'/like/board/'+boardId+'/userId/'+userId,
-        headers: { 
-              "Content-Type": "application/json",
-              "X-HTTP-Method-Override": "POST" 
-        },         
         dataType:'text',
         success:function(result){
             console.log("result: " + result);
@@ -85,7 +81,7 @@ function registerLike(){
     });
 }
 
-//수정 권한이 없는 답장
+//수정 권한이 없는 댓글 리스트
 const noneAuthReplyTemplate = (comments) => {
     let str = 
         `<div class="card" id="${comments.replyId}" style="padding: 2%;">
@@ -105,7 +101,7 @@ const noneAuthReplyTemplate = (comments) => {
     return str;
 }
 
-//수정 권한이 있는 답장 
+//수정 권한이 있는 댓글 리스트
 const authReplyTemplate = (comments) => {
     let str = 
         `<div class="card" id="${comments.replyId}" style="padding: 2%;">
@@ -124,6 +120,7 @@ const authReplyTemplate = (comments) => {
          </div>` 
     return str;
 }
+
 const deletedReplyTemplate = (comments) => {
     let str = 
         `<div class="card" id="${comments.replyId}" >       

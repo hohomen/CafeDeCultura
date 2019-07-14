@@ -1,10 +1,12 @@
 package com.cultura.model;
 
-public class PageCriteria {
+public class Criteria {
     private int page;
-    private int perPageNum;
+    private int perPageNum;//한 화면에 보여지는 게시물 수
+    private String searchType;
+    private String keyword;
 
-    public PageCriteria() {
+    public Criteria() {
       this.page = 1;
       this.perPageNum = 10;
     }
@@ -41,6 +43,19 @@ public class PageCriteria {
     public int getPerPageNum() {
 
       return this.perPageNum;
+    }
+    
+    public String getSearchType() {
+        return searchType;
+    }
+    public void setSearchType(String searchType) {
+        this.searchType = searchType;
+    }    
+    public String getKeyword() {
+        return keyword;
+    }
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
     @Override
